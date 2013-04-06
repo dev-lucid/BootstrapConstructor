@@ -1,4 +1,4 @@
-<?
+<?php
 
 class bsc_widget_paragraph extends bsc_widget
 {
@@ -7,11 +7,27 @@ class bsc_widget_paragraph extends bsc_widget
 		$this->tag = 'p';
 		$this->option('text','');
 	}
+
+	function option($name,$value)
+	{
+		switch($name)
+		{
+			case 'align':
+			case 'emphasis':
+				if($value == 'muted')
+					$this->options['css']['muted'] = true;
+				else
+					$this->options['css']['text-'.$value] = true;
+				break;
+			default:
+				parent::option($name,$value);
+				break;
+		}
+		return $this;
+	}
 	
 	function render_start()
 	{
-		if(isset($this->options['align']))
-			$this->option('class','text-'.$this->options['align']);
 		$html = parent::render_start();
 		$html .= $this->options['text'];
 		return $html;
