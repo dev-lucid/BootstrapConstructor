@@ -24,9 +24,9 @@ class bsc_widget_button extends bsc_widget
 		return $this;
 	}
 	
-	function render_start()
+	function render_start($data = array())
 	{
-		$html = parent::render_start();
+		$html = parent::render_start($data);
 		$html .= $this->options['label'];
 		return $html;
 	}

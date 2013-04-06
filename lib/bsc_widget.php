@@ -6,12 +6,12 @@ class bsc_widget
 	{
 		$this->parent = null;
 		$this->children = array();
+		$this->events = array();
 		$this->tag = '';
 		$this->type = $type;
 		$this->options = array(
 			'css'=>array(),
 			'style'=>'',
-			'events'=>array(),
 		);
 		$this->init();
 		$this->options = $this->options($options);
@@ -112,7 +112,7 @@ class bsc_widget
 		return $html;
 	}
 	
-	function render($data)
+	function render($data=array())
 	{
 		$html = $this->render_start($data);
 		$html .= $this->render_children($data);
@@ -120,12 +120,12 @@ class bsc_widget
 		return $html;
 	}
 	
-	function render_start($data)
+	function render_start($data=array())
 	{
 		return '<'.$this->tag.$this->get_css().$this->get_events().'>';
 	}
 	
-	function render_children($data)
+	function render_children($data=array())
 	{
 		$html = '';
 		foreach($this->children as $child)
@@ -135,7 +135,7 @@ class bsc_widget
 		return $html;
 	}
 	
-	function render_end($data)
+	function render_end($data=array())
 	{
 		return '</'.$this->tag.'>';
 	}

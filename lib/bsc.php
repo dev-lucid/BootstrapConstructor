@@ -1,11 +1,17 @@
 <?php
 
+global $__bsc_widget_search_paths;
+$__bsc_widget_search_paths = array(
+	__DIR__.'/widgets/',
+);
+
 class bsc
 {
 	function create($type,$options=array())
 	{
+		global $__bsc_widget_search_paths;
 		$class = 'bsc_widget_'.$type;
-		$path  = __DIR__.'/widgets/'.$type.'.php';
+		$path  = $__bsc_widget_search_paths[0].$type.'.php';
 		if(!class_exists($class) && file_exists($path))
 		{
 			require_once($path);
@@ -22,4 +28,5 @@ class bsc
 }
 
 require_once(__DIR__.'/bsc_widget.php');
+
 ?>
