@@ -1,5 +1,5 @@
 <?php
-$button = bsc::create('button',array(
+$button = bsc::construct('button',array(
 	'label'=>'button-03',
 	'emphasis'=>'warning',
 ));

@@ -10,7 +10,7 @@ $__bsc_widget_search_paths = array(
 
 class bsc
 {
-	public static function create($type,$options=array())
+	public static function construct($type,$options=array())
 	{
 		global $__bsc_widget_search_paths;
 		$class = 'bsc_widget_'.$type;
@@ -22,7 +22,7 @@ class bsc
 		
 		if(!class_exists($class))
 		{
-			throw new Exception('Unable to create bsc widget: '.$type);
+			throw new Exception('BSC: Unable to create bsc widget: '.$type);
 		}
 		
 		$widget = new $class($type,$options);

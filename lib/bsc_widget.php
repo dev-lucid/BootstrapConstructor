@@ -35,7 +35,6 @@ abstract class bsc_widget
 			$this->option($option_name,$parameters[0]);
 			return $this;
 		}
-		
 	}
 	
 	public function options($options)
@@ -93,13 +92,14 @@ abstract class bsc_widget
 			}
 			else
 			{
-				$widget = bsc::create($params[$i],$params[$i+1]);
+				$widget = bsc::construct($params[$i],$params[$i+1]);
 				$widget->parent =& $this;
 				$this->children[] = $widget;
 				$i++;
 			}
 
 		}
+		return $this;
 	}
 	
 	protected function get_css()
