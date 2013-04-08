@@ -48,7 +48,7 @@ abstract class bsc_widget
 	
 	public function option($name,$value=null)
 	{
-		$events = array('onclick','onkeydown','onkeyup','onmouseover','onmouseout','onchange');
+		global $__bsc;
 		switch($name)
 		{
 			case 'span':
@@ -61,7 +61,7 @@ abstract class bsc_widget
 				$this->options['style'] .= $value;
 				break;
 			default:
-				if(in_array($name,$events))
+				if(in_array($name,$__bsc['events']))
 				{
 					if(!isset($this->events[$name]))
 						$this->events[$name] = '';

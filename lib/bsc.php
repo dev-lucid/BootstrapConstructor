@@ -3,18 +3,20 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-global $__bsc_widget_search_paths;
-$__bsc_widget_search_paths = array(
-	__DIR__.'/widgets/',
+global $__bsc;
+$__bsc= array(
+	'widget_search_paths'=>array(__DIR__.'/widgets/'),
+	'events'=>array('onclick','onkeydown','onkeyup','onmouseover','onmouseout','onchange','onfocus','onblur'),
+	'log_hook'=>null,
 );
 
 class bsc
 {
 	public static function construct($type,$options=array())
 	{
-		global $__bsc_widget_search_paths;
+		global $__bsc;
 		$class = 'bsc_widget_'.$type;
-		$path  = $__bsc_widget_search_paths[0].$type.'.php';
+		$path  = $__bsc['widget_search_paths'][0].$type.'.php';
 		if(!class_exists($class) && file_exists($path))
 		{
 			require_once($path);
@@ -27,6 +29,15 @@ class bsc
 		
 		$widget = new $class($type,$options);
 		return $widget;
+	}
+	
+	function log($string_to_log)
+	{
+		global $__bsc;
+		if(!is_null($__bsc['log_hook']))
+		{
+			$__bsc['log_hook']('BSC: '.$string_to_log);
+		}
 	}
 }
 
