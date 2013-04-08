@@ -1,4 +1,4 @@
-<?
+<?php
 
 class bsc_widget_span extends bsc_widget
 {

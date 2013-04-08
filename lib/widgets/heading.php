@@ -1,4 +1,4 @@
-<?
+<?php
 
 class bsc_widget_heading extends bsc_widget
 {

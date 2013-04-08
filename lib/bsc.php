@@ -7,7 +7,7 @@ $__bsc_widget_search_paths = array(
 
 class bsc
 {
-	function create($type,$options=array())
+	public static function create($type,$options=array())
 	{
 		global $__bsc_widget_search_paths;
 		$class = 'bsc_widget_'.$type;

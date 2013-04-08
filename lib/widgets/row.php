@@ -1,4 +1,4 @@
-<?
+<?php
 
 class bsc_widget_row extends bsc_widget
 {

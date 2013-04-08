@@ -1,10 +1,10 @@
 <?php
 
-class bsc_widget_div extends bsc_widget
+class bsc_widget_code extends bsc_widget
 {
 	function init()
 	{
-		$this->tag = 'div';
+		$this->tag = 'code';
 		$this->option('text','');
 	}
 	

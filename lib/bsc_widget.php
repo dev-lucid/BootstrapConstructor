@@ -1,8 +1,8 @@
-<?
+<?php
 
-class bsc_widget
+abstract class bsc_widget
 {
-	function __construct($type,$options=array())
+	public function __construct($type,$options=array())
 	{
 		$this->parent = null;
 		$this->children = array();
@@ -17,11 +17,11 @@ class bsc_widget
 		$this->options = $this->options($options);
 	}
 	
-	function init()
+	public function init()
 	{
 	}
 	
-	function options($options)
+	public function options($options)
 	{
 		foreach($options as $name=>$value)
 		{
@@ -30,7 +30,7 @@ class bsc_widget
 		return $this->options;
 	}
 	
-	function option($name,$value=null)
+	public function option($name,$value=null)
 	{
 		$events = array('onclick','onkeydown','onkeyup','onmouseover','onmouseout','onchange');
 		switch($name)
@@ -60,7 +60,7 @@ class bsc_widget
 		return $this;
 	}
 	
-	function add()
+	public function add()
 	{
 		$params = func_get_args();
 		for($i=0;$i<count($params);$i++)
@@ -85,7 +85,7 @@ class bsc_widget
 		}
 	}
 	
-	function get_css()
+	protected function get_css()
 	{
 		$html = '';
 		
@@ -102,7 +102,7 @@ class bsc_widget
 		return $html;
 	}
 	
-	function get_events()
+	protected function get_events()
 	{
 		$html = '';
 		foreach($this->events as $type=>$js)
@@ -112,7 +112,7 @@ class bsc_widget
 		return $html;
 	}
 	
-	function render($data=array())
+	public function render($data=array())
 	{
 		$html = $this->render_start($data);
 		$html .= $this->render_children($data);
@@ -120,12 +120,12 @@ class bsc_widget
 		return $html;
 	}
 	
-	function render_start($data=array())
+	protected function render_start($data=array())
 	{
 		return '<'.$this->tag.$this->get_css().$this->get_events().'>';
 	}
 	
-	function render_children($data=array())
+	protected function render_children($data=array())
 	{
 		$html = '';
 		foreach($this->children as $child)
@@ -135,7 +135,7 @@ class bsc_widget
 		return $html;
 	}
 	
-	function render_end($data=array())
+	protected function render_end($data=array())
 	{
 		return '</'.$this->tag.'>';
 	}
