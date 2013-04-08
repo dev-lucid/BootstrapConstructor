@@ -24,6 +24,20 @@ abstract class bsc_widget
 	{
 	}
 	
+	public function __call($option_name,$parameters)
+	{
+		if(count($parameters) == 0)
+		{
+			return $this->options[$option_name];
+		}
+		else
+		{
+			$this->option($option_name,$parameters[0]);
+			return $this;
+		}
+		
+	}
+	
 	public function options($options)
 	{
 		foreach($options as $name=>$value)
