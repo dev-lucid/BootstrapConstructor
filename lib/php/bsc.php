@@ -6,7 +6,7 @@
 global $__bsc;
 $__bsc= array(
 	'widget_search_paths'=>array(__DIR__.'/widgets/'),
-	'events'=>array('onclick','onkeydown','onkeyup','onmouseover','onmouseout','onchange','onfocus','onblur'),
+	'events'=>array('onclick','onkeydown','onkeyup','onmouseover','onmouseout','onchange','onfocus','onblur','onsubmit'),
 	'log_hook'=>null,
 );
 
