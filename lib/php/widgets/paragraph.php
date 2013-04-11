@@ -7,7 +7,7 @@ class bsc_widget_paragraph extends bsc_widget
 {
 	function init()
 	{
-		$this->tag = 'p';
+		$this->options['tag'] = 'p';
 		$this->option('text','');
 	}
 

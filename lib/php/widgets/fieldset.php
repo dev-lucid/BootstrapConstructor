@@ -3,18 +3,21 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-class bsc_widget_pre extends bsc_widget
+class bsc_widget_fieldset extends bsc_widget
 {
 	function init()
 	{
-		$this->options['tag'] = 'pre';
-		$this->option('text','');
+		$this->options['fieldset'] = 'p';
+		$this->option('legend','');
 	}
 	
 	function render_start()
 	{
 		$html = parent::render_start();
-		$html .= $this->options['text'];
+		
+		if($this->options['legend'] != '')
+			$html .= '<legend>'.$this->options['legend'].'</legend>';
+			
 		return $html;
 	}
 }

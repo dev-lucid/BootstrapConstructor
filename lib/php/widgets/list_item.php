@@ -3,11 +3,11 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-class bsc_widget_pre extends bsc_widget
+class bsc_widget_list_item extends bsc_widget
 {
 	function init()
 	{
-		$this->options['tag'] = 'pre';
+		$this->options['tag'] = 'li';
 		$this->option('text','');
 	}
 	

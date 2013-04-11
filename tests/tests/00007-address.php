@@ -1,8 +1,8 @@
 <?php
 $html = '';
 
-$html .= bsc::construct('address')->render()."\n";
-$html .= bsc::construct('address')
+$html .= bsc::address()->render()."\n";
+$html .= bsc::address()
 	->title('test address1')
 	->address1('100 n. main st')
 	->address2('apt 3')
@@ -13,12 +13,12 @@ $html .= bsc::construct('address')
 	->fax('444.555.6666')
 	->email('testemail@testemail.notreal')
 	->render()."\n";
-$html .= bsc::construct('address')->render(array(
+$html .= bsc::address()->render(array(
 	'address1'=>'200 s. main st',
 	'city'=>'nowhere',
 	'region'=>'california',
 ))."\n";
-$html .= bsc::construct('address')
+$html .= bsc::address()
 	->option('fields',array(
 		'address1'=>'test_address_1',
 		'city'=>'test_municipality',

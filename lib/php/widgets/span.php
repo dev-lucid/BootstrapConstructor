@@ -7,7 +7,7 @@ class bsc_widget_span extends bsc_widget
 {
 	function init()
 	{
-		$this->tag = 'span';
+		$this->options['tag'] = 'span';
 		$this->option('text','');
 	}
 	

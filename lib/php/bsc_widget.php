@@ -10,9 +10,9 @@ abstract class bsc_widget
 		$this->parent = null;
 		$this->children = array();
 		$this->events = array();
-		$this->tag = '';
 		$this->type = $type;
 		$this->options = array(
+			'tag'=>'',
 			'css'=>array(),
 			'style'=>'',
 		);
@@ -22,6 +22,12 @@ abstract class bsc_widget
 	
 	public function init()
 	{
+	}
+	
+	function loop($function)
+	{
+		$this->loop_hook = $function;
+		return $this;
 	}
 	
 	public function __call($option_name,$parameters)
@@ -39,9 +45,12 @@ abstract class bsc_widget
 	
 	public function options($options)
 	{
-		foreach($options as $name=>$value)
+		if(is_array($options))
 		{
-			$this->option($name,$value);
+			foreach($options as $name=>$value)
+			{
+				$this->option($name,$value);
+			}
 		}
 		return $this->options;
 	}
@@ -131,20 +140,40 @@ abstract class bsc_widget
 	
 	public function render($data=array())
 	{
-		$html = $this->render_start($data);
+		$html = '';
+		
+		if(isset($this->options['on_render_start']))
+		{
+			$func = $this->options['on_render_start'];
+			$return = $func($this,$data);
+			if(isset($return))
+				$html .= $return;
+		}
+		
+		$html .= $this->render_start($data);
 		$html .= $this->render_children($data);
 		$html .= $this->render_end($data);
+
+		if(isset($this->options['on_render_end']))
+		{
+			$func = $this->options['on_render_end'];
+			$return = $func($this,$data);
+			if(isset($return))
+				$html .= $return;
+		}
 		return $html;
 	}
 	
 	protected function render_start($data=array())
 	{
-		return '<'.$this->tag.$this->get_css().$this->get_events().'>';
+		if($this->options['tag'] == '')
+			return '';
+		return '<'.$this->options['tag'].$this->get_css().$this->get_events().'>';
 	}
 	
 	protected function render_children($data=array())
 	{
-		$html = '';
+		$html = '';		
 		foreach($this->children as $child)
 		{
 			$html .= $child->render($data);
@@ -154,7 +183,9 @@ abstract class bsc_widget
 	
 	protected function render_end($data=array())
 	{
-		return '</'.$this->tag.'>';
+		if($this->options['tag'] == '')
+			return '';
+		return '</'.$this->options['tag'].'>';
 	}
 }
 

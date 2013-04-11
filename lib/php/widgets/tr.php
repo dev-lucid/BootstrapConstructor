@@ -3,22 +3,19 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-class bsc_widget_button extends bsc_widget
+class bsc_widget_tr extends bsc_widget
 {
 	function init()
 	{
-		$this->options['tag'] = 'a';
-		$this->option('label','');
-		$this->option('class','btn');
+		$this->options['tag'] = 'tr';
 	}
 	
 	function option($name,$value)
 	{
 		switch($name)
 		{
-			case 'size':
 			case 'emphasis':
-				$this->options['css']['btn-'.$value] = true;
+				$this->options['css'][$value] = true;
 				break;
 			default:
 				parent::option($name,$value);
@@ -26,13 +23,7 @@ class bsc_widget_button extends bsc_widget
 		}
 		return $this;
 	}
-	
-	function render_start($data = array())
-	{
-		$html = parent::render_start($data);
-		$html .= $this->options['label'];
-		return $html;
-	}
+
 }
 
 ?>

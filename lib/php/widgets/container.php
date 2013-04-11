@@ -7,7 +7,7 @@ class bsc_widget_container extends bsc_widget
 {
 	function init()
 	{
-		$this->tag = 'div';
+		$this->options['tag'] = 'div';
 		$this->option('fluid',true);
 	}
 	

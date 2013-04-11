@@ -3,12 +3,17 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-class bsc_widget_button_group extends bsc_widget
+class bsc_widget_col extends bsc_widget
 {
 	function init()
 	{
-		$this->options['tag'] = 'div';
-		$this->option('class','btn-group');
+		$this->options['width'] = 0;
+	}
+	
+	function render_start()
+	{
+		$html = '<col width="'.$this->options['width'].'" />';
+		return $html;
 	}
 }
 

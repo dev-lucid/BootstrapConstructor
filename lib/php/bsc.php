@@ -31,6 +31,11 @@ class bsc
 		return $widget;
 	}
 	
+	public static function __callStatic($type,$options)
+	{
+		return bsc::construct($type,$options[0]);
+	}
+	
 	function log($string_to_log)
 	{
 		global $__bsc;

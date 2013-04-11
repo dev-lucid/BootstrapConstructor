@@ -7,7 +7,7 @@ class bsc_widget_address extends bsc_widget
 {
 	function init()
 	{
-		$this->tag = 'address';
+		$this->options['tag'] = 'address';
 		$this->option('title','');
 		$this->option('address1','');
 		$this->option('address2','');
