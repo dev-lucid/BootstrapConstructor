@@ -47,5 +47,5 @@ class bsc
 }
 
 require_once(__DIR__.'/bsc_widget.php');
-
+require_once(__DIR__.'/bsc_widget_input.php');
 ?>

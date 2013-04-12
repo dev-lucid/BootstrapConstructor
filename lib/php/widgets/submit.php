@@ -29,7 +29,7 @@ class bsc_widget_submit extends bsc_widget
 	
 	function render_start($data = array())
 	{
-		$html = '<'.$this->options['tag'].' type="submit"'.$this->get_css().$this->get_events().'>';
+		$html = '<'.$this->options['tag'].' type="submit"'.$this->get_attributes().'>';
 		$html .= $this->options['label'];
 		return $html;
 	}

@@ -111,7 +111,7 @@ abstract class bsc_widget
 		return $this;
 	}
 	
-	protected function get_css()
+	protected function __get_css()
 	{
 		$html = '';
 		
@@ -128,12 +128,22 @@ abstract class bsc_widget
 		return $html;
 	}
 	
-	protected function get_events()
+	protected function __get_events()
 	{
 		$html = '';
 		foreach($this->events as $type=>$js)
 		{
 			$html .= ' '.$type.'="'.$js.'"';
+		}
+		return $html;
+	}
+	
+	protected function get_attributes()
+	{
+		$html = $this->__get_css() . $this->__get_events();
+		if(isset($this->options['id']) && $this->options['id'] != '')
+		{
+			$html .= ' id="'.$this->options['id'].'"';
 		}
 		return $html;
 	}
@@ -168,7 +178,7 @@ abstract class bsc_widget
 	{
 		if($this->options['tag'] == '')
 			return '';
-		return '<'.$this->options['tag'].$this->get_css().$this->get_events().'>';
+		return '<'.$this->options['tag'].$this->get_attributes().'>';
 	}
 	
 	protected function render_children($data=array())

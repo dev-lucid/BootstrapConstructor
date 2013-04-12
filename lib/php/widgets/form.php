@@ -9,13 +9,23 @@ class bsc_widget_form extends bsc_widget
 	{
 		$this->options['tag'] = 'form';
 		$this->option('action','');
+		$this->option('name','');
 		$this->option('method','post');
+		$this->option('layout','');
 	}
 	
 	function render_start($data = array())
 	{
 		$html = '<form';
 		
+		if($this->options['layout'] != '')
+		{
+			$this->class('form-'.$this->options['layout']);
+			$html .= $this->get_attributes();
+		}
+		
+		if($this->options['name'] != '')
+			$html .= ' name="'.$this->options['name'].'"';
 		if($this->options['method'] != '')
 			$html .= ' method="'.$this->options['method'].'"';
 		if($this->options['action'] != '')
