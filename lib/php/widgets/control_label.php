@@ -7,6 +7,7 @@ class bsc_widget_control_label extends bsc_widget
 {
 	function init()
 	{
+		$this->default_option = 'label';
 		$this->options['tag'] = 'label';
 		$this->class('control-label');
 		$this->options['for'] = '';

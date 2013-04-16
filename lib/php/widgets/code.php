@@ -7,6 +7,7 @@ class bsc_widget_code extends bsc_widget
 {
 	function init()
 	{
+		$this->default_option = 'text';
 		$this->options['tag'] = 'code';
 		$this->option('text','');
 	}

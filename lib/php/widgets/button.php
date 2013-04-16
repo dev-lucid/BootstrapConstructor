@@ -7,6 +7,7 @@ class bsc_widget_button extends bsc_widget
 {
 	function init()
 	{
+		$this->default_option = 'label';
 		$this->options['tag'] = 'a';
 		$this->option('label','');
 		$this->option('class','btn');
@@ -16,6 +17,10 @@ class bsc_widget_button extends bsc_widget
 	{
 		switch($name)
 		{
+			case 'dropdown':
+				#$this->options['dropdown'] = true;
+				$this->class('dropdown-toggle');
+				break;
 			case 'size':
 			case 'emphasis':
 				$this->options['css']['btn-'.$value] = true;
@@ -29,6 +34,7 @@ class bsc_widget_button extends bsc_widget
 	
 	function render_start($data = array())
 	{
+
 		$html = parent::render_start($data);
 		$html .= $this->options['label'];
 		return $html;

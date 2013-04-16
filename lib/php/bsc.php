@@ -12,19 +12,40 @@ $__bsc= array(
 
 class bsc
 {
-	public static function construct($type,$options=array())
+	public static function init($config = array())
 	{
 		global $__bsc;
+		
+		foreach($config as $key=>$value)
+		{
+			if(is_array($value))
+			{
+				foreach($value as $subkey=>$subvalue)
+				{
+					$__bsc[$key][$subkey] = $subvalue;
+				}
+			}
+			else
+				$__bsc[$key] = $value;
+		}
+	}
+	
+	public static function construct($type='',$options=array())
+	{
+		global $__bsc;
+		
+	
 		$class = 'bsc_widget_'.$type;
 		$path  = $__bsc['widget_search_paths'][0].$type.'.php';
 		if(!class_exists($class) && file_exists($path))
 		{
+			bsc::log('loading widget class file: '.$type);
 			require_once($path);
 		}
 		
 		if(!class_exists($class))
 		{
-			throw new Exception('BSC: Unable to create bsc widget: '.$type);
+			throw new Exception('BSC: Unable to create bsc widget: '.$type.'/'.$class);
 		}
 		
 		$widget = new $class($type,$options);
@@ -48,4 +69,5 @@ class bsc
 
 require_once(__DIR__.'/bsc_widget.php');
 require_once(__DIR__.'/bsc_widget_input.php');
+
 ?>

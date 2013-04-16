@@ -7,6 +7,7 @@ class bsc_widget_fieldset extends bsc_widget
 {
 	function init()
 	{
+		$this->default_option = 'legend';
 		$this->options['fieldset'] = 'p';
 		$this->option('legend','');
 	}

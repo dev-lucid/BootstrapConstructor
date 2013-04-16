@@ -7,6 +7,7 @@ class bsc_widget_form extends bsc_widget
 {
 	function init()
 	{
+		$this->default_option = 'action';
 		$this->options['tag'] = 'form';
 		$this->option('action','');
 		$this->option('name','');

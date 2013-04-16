@@ -11,12 +11,20 @@ abstract class bsc_widget
 		$this->children = array();
 		$this->events = array();
 		$this->type = $type;
+		$this->attributes = array();
+		$this->default_option = null;
 		$this->options = array(
 			'tag'=>'',
 			'css'=>array(),
 			'style'=>'',
 		);
 		$this->init();
+		
+		if(!is_array($options) && !is_null($this->default_option))
+		{
+			$options = array($this->default_option.''=>$options);
+		}
+		
 		$this->options = $this->options($options);
 	}
 	
@@ -140,7 +148,7 @@ abstract class bsc_widget
 	
 	protected function get_attributes()
 	{
-		$html = $this->__get_css() . $this->__get_events();
+		$html = $this->__get_css() . $this->__get_events().implode('',$this->attributes);
 		if(isset($this->options['id']) && $this->options['id'] != '')
 		{
 			$html .= ' id="'.$this->options['id'].'"';

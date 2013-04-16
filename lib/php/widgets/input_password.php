@@ -7,6 +7,7 @@ class bsc_widget_input_password extends bsc_widget_input
 {
 	function init()
 	{
+		$this->default_option = 'name';
 		$this->options['tag'] = '';
 		$this->option('name','');
 		$this->option('value','');
