@@ -33,7 +33,7 @@ class bsc_widget_input_text extends bsc_widget_input
 				$this->options['css']['input-'.$value] = true;
 				break;
 			default:
-				parent::option($name,$value);
+				return parent::option($name,$value);
 				break;
 		}
 		return $this;

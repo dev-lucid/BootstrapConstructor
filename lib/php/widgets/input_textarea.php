@@ -12,6 +12,7 @@ class bsc_widget_input_textarea extends bsc_widget_input
 		$this->option('name','');
 		$this->option('value','');
 		$this->option('rows',3);
+		$this->option('cols',null);
 	}
 	
 	function render_start($data)
@@ -20,6 +21,9 @@ class bsc_widget_input_textarea extends bsc_widget_input
 		
 		if(is_numeric($this->options['rows']))
 			$html .= ' rows="'.$this->options['rows'].'"';
+			
+		if(is_numeric($this->options['cols']))
+			$html .= ' cols="'.$this->options['cols'].'"';
 			
 		$html .= '>';
 		$html .= $this->options['value'];

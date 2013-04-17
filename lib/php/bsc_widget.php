@@ -25,33 +25,19 @@ abstract class bsc_widget
 			$options = array($this->default_option.''=>$options);
 		}
 		
-		$this->options = $this->options($options);
+		$this->options = $this->__options($options);
 	}
 	
 	public function init()
 	{
 	}
 	
-	function loop($function)
-	{
-		$this->loop_hook = $function;
-		return $this;
-	}
-	
 	public function __call($option_name,$parameters)
 	{
-		if(count($parameters) == 0)
-		{
-			return $this->options[$option_name];
-		}
-		else
-		{
-			$this->option($option_name,$parameters[0]);
-			return $this;
-		}
+		return $this->option($option_name,$parameters[0]);
 	}
 	
-	public function options($options)
+	public function __options($options)
 	{
 		if(is_array($options))
 		{
@@ -152,6 +138,10 @@ abstract class bsc_widget
 		if(isset($this->options['id']) && $this->options['id'] != '')
 		{
 			$html .= ' id="'.$this->options['id'].'"';
+		}
+		if(isset($this->options['name']) && $this->options['name'] != '')
+		{
+			$html .= ' name="'.$this->options['name'].'"';
 		}
 		return $html;
 	}
