@@ -7,11 +7,28 @@ global $__bsc;
 $__bsc= array(
 	'widget_search_paths'=>array(__DIR__.'/widgets/'),
 	'events'=>array('onclick','onkeydown','onkeyup','onmouseover','onmouseout','onchange','onfocus','onblur','onsubmit'),
-	'log_hook'=>null,
+	'hooks'=>array(),
 );
 
 class bsc
 {
+	function log($to_write)
+	{
+		global $__bsc;
+		if(isset($__bsc['hooks']['log']))
+		{
+			$to_write=(is_object($to_write) || is_array($to_write))?print_r($to_write,true):$to_write;
+			$__bsc['hooks']['log']('BSC: '.$to_write);
+		}
+	}
+	
+	function call_hook($hook,$p0=null,$p1=null,$p2=null,$p3=null,$p4=null,$p5=null,$p6=null)
+	{
+		global $__bsc;
+		if(isset($__bsc['hooks'][$hook]))
+			$__bsc['hooks'][$hook]($p0,$p1,$p2,$p3,$p4,$p5,$p6);
+	}
+	
 	public static function init($config = array())
 	{
 		global $__bsc;
@@ -22,12 +39,19 @@ class bsc
 			{
 				foreach($value as $subkey=>$subvalue)
 				{
-					$__bsc[$key][$subkey] = $subvalue;
+					if(is_numeric($subkey))
+						$__bsc[$key][] = $subvalue;
+					else
+						$__bsc[$key][$subkey] = $subvalue;
 				}
 			}
 			else
 				$__bsc[$key] = $value;
 		}
+	}
+	
+	public static function deinit()
+	{
 	}
 	
 	public static function construct($type='',$options=array())
@@ -55,15 +79,6 @@ class bsc
 	public static function __callStatic($type,$options)
 	{
 		return bsc::construct($type,$options[0]);
-	}
-	
-	function log($string_to_log)
-	{
-		global $__bsc;
-		if(!is_null($__bsc['log_hook']))
-		{
-			$__bsc['log_hook']('BSC: '.$string_to_log);
-		}
 	}
 }
 
