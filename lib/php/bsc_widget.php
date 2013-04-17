@@ -205,6 +205,11 @@ abstract class bsc_widget
 			return '';
 		return '</'.$this->options['tag'].'>';
 	}
+	
+	function __toString()
+	{
+		return $this->render();
+	}
 }
 
 ?>
