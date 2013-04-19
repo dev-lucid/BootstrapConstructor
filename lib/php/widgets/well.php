@@ -10,6 +10,21 @@ class bsc_widget_well extends bsc_widget
 		$this->options['tag'] = 'div';
 		$this->class('well');
 	}
+	
+	
+	function option($name,$value)
+	{
+		switch($name)
+		{
+			case 'size':
+				$this->options['css']['well-'.$value] = true;
+				break;
+			default:
+				parent::option($name,$value);
+				break;
+		}
+		return $this;
+	}
 }
 
 ?>

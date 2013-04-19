@@ -32,7 +32,7 @@ class bsc_widget_page_header extends bsc_widget
 
 		$html .= '</h'.$this->options['level'].'>';
 		
-		$html .= parent::render_start($data);
+		$html .= parent::render_end($data);
 		return $html;
 	}
 		
