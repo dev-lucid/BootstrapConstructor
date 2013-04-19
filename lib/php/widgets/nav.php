@@ -17,7 +17,8 @@ class bsc_widget_nav extends bsc_widget
 		switch($name)
 		{
 			case 'type':
-				$this->class('nav-'.$value);
+				if(!is_null($value) && $value != '')
+					$this->class('nav-'.$value);
 				break;
 			case 'stacked':
 				$this->class('nav-'.$name);
