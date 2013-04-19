@@ -24,7 +24,7 @@ class bsc_widget_input_select extends bsc_widget_input
 			case 'multiple':
 				bsc::log('multiple option set');
 				if($value || is_null($value))
-					$this->attributes[] = ' multiple="multiple"';
+					$this->attributes['multiple']='multiple';
 				break;
 			default:
 				parent::option($name,$value);

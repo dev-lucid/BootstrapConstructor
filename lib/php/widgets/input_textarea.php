@@ -9,8 +9,6 @@ class bsc_widget_input_textarea extends bsc_widget_input
 	{
 		$this->default_option = 'name';
 		$this->options['tag'] = 'textarea';
-		$this->option('name','');
-		$this->option('value','');
 		$this->option('rows',3);
 		$this->option('cols',null);
 	}

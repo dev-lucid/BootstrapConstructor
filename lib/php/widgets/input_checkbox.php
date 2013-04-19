@@ -9,23 +9,16 @@ class bsc_widget_input_checkbox extends bsc_widget_input
 	{
 		$this->default_option = 'name';
 		$this->options['tag'] = '';
-		$this->option('name','');
-		$this->option('value','');
+		$this->attributes['type'] = 'checkbox';
 		$this->option('checked',false);
 	}
 	
 	function render_start($data)
 	{
-		$html = '<input type="checkbox" '.$this->get_attributes();
-		
-		if($this->options['name'] != '')
-			$html .= ' name="'.$this->options['name'].'"';
-		if($this->options['value'] != '')
-			$html .= ' value="'.$this->options['value'].'"';
 		if($this->options['checked'])
-			$html .= ' checked="checked"';
+			$this->attributes['checked'] = 'checked';
 			
-		$html .= ' />';
+		$html = '<input'.$this->get_attributes() . ' />';
 		
 		$html .= $this->__help_block();
 		

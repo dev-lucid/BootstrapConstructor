@@ -17,7 +17,7 @@ class bsc_widget_anchor extends bsc_widget
 		switch($name)
 		{
 			case 'href':
-				$this->attributes[] = ' href="'.$value.'"';;
+				$this->attributes['href'] = $value;
 				break;
 			default:
 				parent::option($name,$value);

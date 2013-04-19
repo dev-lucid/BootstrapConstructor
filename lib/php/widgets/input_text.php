@@ -9,11 +9,9 @@ class bsc_widget_input_text extends bsc_widget_input
 	{
 		$this->default_option = 'name';
 		$this->options['tag'] = '';
-		$this->option('id','');
-		$this->option('name','');
-		$this->option('value','');
-		$this->option('placeholder','');
+		$this->option_attributes[] = 'placeholder';
 		
+		$this->attributes['type'] = 'text';
 		$this->options['prepend'] = array();
 		$this->options['append'] = array();
 	}
@@ -63,19 +61,9 @@ class bsc_widget_input_text extends bsc_widget_input
 				$html .= '<span class="add-on">'.$this->__translate($prepend).'</span>';
 		}
 		
-		$html .= '<input type="text" '.$this->get_attributes();
+		$html .= '<input'.$this->get_attributes() . ' />';
 		
-		if($this->options['id'] != '')
-			$html .= ' id="'.$this->options['name'].'"';
-		if($this->options['name'] != '')
-			$html .= ' name="'.$this->options['name'].'"';
-		if($this->options['value'] != '')
-			$html .= ' value="'.$this->options['value'].'"';
-		if($this->options['placeholder'] != '')
-			$html .= ' placeholder="'.$this->__translate($this->options['placeholder']).'"';
-			
-		$html .= ' />';
-		
+				
 		foreach($this->options['append'] as $append)
 		{
 			if(is_object($append))

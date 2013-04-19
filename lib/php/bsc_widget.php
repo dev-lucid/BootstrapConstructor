@@ -14,6 +14,9 @@ abstract class bsc_widget
 		$this->attributes = array();
 		$this->default_option = null;
 		$this->disable_translate = false;
+		
+		$this->option_attributes = array('id','name','value');
+		
 		$this->options = array(
 			'icon'=>null,
 			'tag'=>'',
@@ -69,7 +72,11 @@ abstract class bsc_widget
 				$this->options['style'] .= $value;
 				break;
 			default:
-				if(in_array($name,$__bsc['events']))
+				if(in_array($name,$this->option_attributes))
+				{
+					$this->attributes[$name] = $value;
+				}
+				else if(in_array($name,$__bsc['events']))
 				{
 					if(!isset($this->events[$name]))
 						$this->events[$name] = '';
@@ -144,14 +151,10 @@ abstract class bsc_widget
 	
 	protected function get_attributes()
 	{
-		$html = $this->__get_css() . $this->__get_events().implode('',$this->attributes);
-		if(isset($this->options['id']) && $this->options['id'] != '')
+		$html = $this->__get_css() . $this->__get_events();
+		foreach($this->attributes as $name=>$value)
 		{
-			$html .= ' id="'.$this->options['id'].'"';
-		}
-		if(isset($this->options['name']) && $this->options['name'] != '')
-		{
-			$html .= ' name="'.$this->options['name'].'"';
+			$html .= ' '.$name.'="'.$value.'"';
 		}
 		return $html;
 	}

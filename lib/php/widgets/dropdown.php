@@ -9,8 +9,8 @@ class bsc_widget_dropdown extends bsc_widget
 	{
 		$this->options['tag'] = 'ul';
 		$this->options['css']['dropdown-menu'] = true;
-		$this->attributes[] = ' role="menu"';
-		$this->attributes[] = ' aria-labelledby="dLabel"';
+		$this->attributes['role'] = 'menu';
+		$this->attributes['aria-labelledby'] = 'dLabel';
 	}
 }
 
