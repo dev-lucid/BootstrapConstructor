@@ -36,7 +36,7 @@ class bsc_widget_button extends bsc_widget
 	{
 
 		$html = parent::render_start($data);
-		$html .= $this->options['label'];
+		$html .= $this->__translate($this->options['label']);
 		return $html;
 	}
 }

@@ -60,7 +60,7 @@ class bsc_widget_input_text extends bsc_widget_input
 			if(is_object($prepend))
 				$html .= $prepend->render($data);
 			else
-				$html .= '<span class="add-on">'.$prepend.'</span>';
+				$html .= '<span class="add-on">'.$this->__translate($prepend).'</span>';
 		}
 		
 		$html .= '<input type="text" '.$this->get_attributes();
@@ -72,7 +72,7 @@ class bsc_widget_input_text extends bsc_widget_input
 		if($this->options['value'] != '')
 			$html .= ' value="'.$this->options['value'].'"';
 		if($this->options['placeholder'] != '')
-			$html .= ' placeholder="'.$this->options['placeholder'].'"';
+			$html .= ' placeholder="'.$this->__translate($this->options['placeholder']).'"';
 			
 		$html .= ' />';
 		
@@ -81,7 +81,7 @@ class bsc_widget_input_text extends bsc_widget_input
 			if(is_object($append))
 				$html .= $append->render($data);
 			else
-				$html .= '<span class="add-on">'.$append.'</span>';
+				$html .= '<span class="add-on">'.$this->__translate($append).'</span>';
 		}
 		
 		if(($prepend_count + $append_count) > 0)

@@ -14,6 +14,7 @@ class bsc_widget_label extends bsc_widget
 	
 	function render_start()
 	{
+		global $__bsc;
 		$html = parent::render_start();
 		
 		if(isset($this->options['css']['checkbox']))
@@ -21,7 +22,8 @@ class bsc_widget_label extends bsc_widget
 		}
 		else
 		{
-			$html .= $this->options['text'];
+			$html .= $this->__translate($this->options['text']);
+		
 		}
 			
 		return $html;
@@ -29,10 +31,12 @@ class bsc_widget_label extends bsc_widget
 	
 	protected function render_end($data=array())
 	{
+		global $__bsc;
+		
 		$html = '';
 		if(isset($this->options['css']['checkbox']))
 		{
-			$html .= $this->options['text'];
+			$html .= $this->__translate($this->options['text']);
 		}
 		
 		if($this->options['tag'] == '')

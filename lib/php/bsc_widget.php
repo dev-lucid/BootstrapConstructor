@@ -13,6 +13,7 @@ abstract class bsc_widget
 		$this->type = $type;
 		$this->attributes = array();
 		$this->default_option = null;
+		$this->disable_translate = false;
 		$this->options = array(
 			'tag'=>'',
 			'css'=>array(),
@@ -54,6 +55,9 @@ abstract class bsc_widget
 		global $__bsc;
 		switch($name)
 		{
+			case 'disable_translate':
+				$this->disable_translate = true;
+				break;
 			case 'span':
 				$this->options['span'] = $value;
 				break;
@@ -170,6 +174,12 @@ abstract class bsc_widget
 				$html .= $return;
 		}
 		return $html;
+	}
+	
+	protected function __translate($text)
+	{
+		global $__bsc;
+		return (isset($__bsc['hooks']['translator']) && $this->disable_translate !== true)?$__bsc['hooks']['translator']($text):$text;
 	}
 	
 	protected function render_start($data=array())

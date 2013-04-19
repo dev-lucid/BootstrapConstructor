@@ -14,7 +14,7 @@ class bsc_widget_div extends bsc_widget
 	function render_start()
 	{
 		$html = parent::render_start();
-		$html .= $this->options['text'];
+		$html .= $this->__translate($this->options['text']);
 		return $html;
 	}
 }

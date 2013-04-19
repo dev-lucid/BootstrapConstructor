@@ -16,7 +16,7 @@ class bsc_widget_heading extends bsc_widget
 	{
 		$this->options['tag'] = 'h'.$this->options['level'];
 		$html = parent::render_start();
-		$html .= $this->options['text'];
+		$html .= $this->__translate($this->options['text']);
 		return $html;
 	}
 }

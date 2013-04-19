@@ -38,7 +38,7 @@ class bsc_widget_input_password extends bsc_widget_input
 		if($this->options['value'] != '')
 			$html .= ' value="'.$this->options['value'].'"';
 		if($this->options['placeholder'] != '')
-			$html .= ' placeholder="'.$this->options['placeholder'].'"';
+			$html .= ' placeholder="'.$this->__translate($this->options['placeholder']).'"';
 			
 		$html .= ' />';
 		

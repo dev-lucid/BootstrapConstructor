@@ -17,13 +17,13 @@ class bsc_widget_blockquote extends bsc_widget
 	function render_start()
 	{
 		$html = parent::render_start();
-		$html .= '<p>'.$this->options['text'].'</p>';
+		$html .= '<p>'.$this->__translate($this->options['text']).'</p>';
 		if($this->options['source'] != '')
 		{
-			$html .= '<small>'.$this->options['source'];
+			$html .= '<small>'.$this->__translate($this->options['source']);
 			if($this->options['source'] != '')
 			{
-				$html .= ' <cite title="'.$this->options['source_title'].'">'.$this->options['source_title'].'</cite>';
+				$html .= ' <cite title="'.$this->__translate($this->options['source_title']).'">'.$this->__translate($this->options['source_title']).'</cite>';
 			}
 			$html .= '</small>';
 		}

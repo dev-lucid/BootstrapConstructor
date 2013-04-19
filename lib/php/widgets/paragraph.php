@@ -32,8 +32,9 @@ class bsc_widget_paragraph extends bsc_widget
 	
 	function render_start()
 	{
+		global $__bsc;
 		$html = parent::render_start();
-		$html .= $this->options['text'];
+		$html .= $this->__translate($this->options['text']);
 		return $html;
 	}
 }

@@ -14,10 +14,17 @@ class bsc_widget_list_definition_item extends bsc_widget
 	}
 	
 	function render_start()
-	{
+	{		
 		$html = parent::render_start();
-		$html .= '<'.$this->options['term_tag'].'>'.$this->options['term'].'</'.$this->options['term_tag'].'>';
-		$html .= '<'.$this->options['description_tag'].'>'.$this->options['description'].'</'.$this->options['description_tag'].'>';
+		
+		$html .= '<'.$this->options['term_tag'].'>';
+		$thml .= $this->__translate($this->options['term']);
+		$html .= '</'.$this->options['term_tag'].'>';
+		
+		$html .= '<'.$this->options['description_tag'].'>';
+		$thml .= $this->__translate($this->options['description']);
+		$html .= '</'.$this->options['description_tag'].'>';
+
 		return $html;
 	}
 }
