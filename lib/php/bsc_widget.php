@@ -91,6 +91,12 @@ abstract class bsc_widget
 		return $this;
 	}
 	
+	public function attribute($name,$value)
+	{
+		$this->attributes[$name] = $value;
+		return $this;
+	}
+	
 	public function add()
 	{
 		$params = func_get_args();
