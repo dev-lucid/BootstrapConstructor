@@ -9,23 +9,15 @@ class bsc_widget_input_textarea extends bsc_widget_input
 	{
 		$this->default_option = 'name';
 		$this->options['tag'] = 'textarea';
+		$this->option_attributes[] = 'rows';
+		$this->option_attributes[] = 'cols';
 		$this->option('rows',3);
-		$this->option('cols',null);
 	}
 	
 	function render_start($data)
 	{
-		$html = '<textarea'.$this->get_attributes();
-		
-		if(is_numeric($this->options['rows']))
-			$html .= ' rows="'.$this->options['rows'].'"';
-			
-		if(is_numeric($this->options['cols']))
-			$html .= ' cols="'.$this->options['cols'].'"';
-			
-		$html .= '>';
-		$html .= $this->options['value'];
-		
+		$html = parent::render_start($data);
+		$html .= $this->options['value'];	
 		return $html;
 	}
 }
