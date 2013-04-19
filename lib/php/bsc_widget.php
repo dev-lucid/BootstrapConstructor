@@ -59,6 +59,9 @@ abstract class bsc_widget
 		global $__bsc;
 		switch($name)
 		{
+			case 'active':
+				$this->options['css']['active'] = true;
+				break;
 			case 'disable_translate':
 				$this->disable_translate = true;
 				break;
