@@ -3,7 +3,7 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-class bsc_widget_hero_unit extends bsc_widget
+class bsc_widget_page_header extends bsc_widget
 {
 	function init()
 	{
@@ -11,28 +11,27 @@ class bsc_widget_hero_unit extends bsc_widget
 		$this->options['tag'] = 'div';
 		$this->option('heading','');
 		$this->option('level',1);
-		$this->option('tagline','');
-		$this->option('class','hero-unit');
+		$this->option('subtext','');
+		$this->option('class','page-header');
 	}
 
 	
 	function render_start($data = array())
 	{			
 		$html = parent::render_start($data);
-
-		if($this->options['heading'] != '')
-			$html .= bsc::heading($this->options['heading'])->level($this->options['level']);
-		if($this->options['tagline'] != '')
-			$html .= bsc::paragraph($this->options['tagline']);
-		
-		$html .= '<p>';
-		
+		$html .= '<h'.$this->options['level'].'>' . $this->options['heading'];
 		return $html;
 	}
 	
 	function render_end($data = array())
 	{			
-		$html = '</p>';	
+		$html = '';	
+		
+		if($this->options['subtext'] != '')
+			$html .= ' <small>'.$this->options['subtext'].'</small>';
+
+		$html .= '</h'.$this->options['level'].'>';
+		
 		$html .= parent::render_start($data);
 		return $html;
 	}
