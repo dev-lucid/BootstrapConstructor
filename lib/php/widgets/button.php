@@ -18,7 +18,6 @@ class bsc_widget_button extends bsc_widget
 		switch($name)
 		{
 			case 'dropdown':
-				#$this->options['dropdown'] = true;
 				$this->class('dropdown-toggle');
 				break;
 			case 'size':

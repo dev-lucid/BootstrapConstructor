@@ -16,6 +16,9 @@ class bsc_widget_anchor extends bsc_widget
 	{
 		switch($name)
 		{
+			case 'dropdown':
+				$this->class('dropdown-toggle');
+				break;
 			case 'href':
 				$this->attributes['href'] = $value;
 				break;
@@ -29,9 +32,16 @@ class bsc_widget_anchor extends bsc_widget
 	function render_start()
 	{
 		global $__bsc;
+		if(isset($this->options['css']['dropdown-toggle']))
+			$this->attributes['data-toggle'] = 'dropdown';
+			
 		$html = parent::render_start();
 		$html .= $this->__get_icon();
 		$html .= $this->__translate($this->options['text']);
+		
+		if(isset($this->options['css']['dropdown-toggle']))
+			$html .= ' <span class="caret"></span>';
+			
 		return $html;
 	}
 

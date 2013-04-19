@@ -7,8 +7,23 @@ class bsc_widget_list_item extends bsc_widget
 {
 	function init()
 	{
+		$this->default_option = 'text';
 		$this->options['tag'] = 'li';
 		$this->option('text','');
+	}
+	
+	function option($name,$value)
+	{
+		switch($name)
+		{
+			case 'dropdown':
+				$this->class('dropdown');
+				break;
+			default:
+				parent::option($name,$value);
+				break;
+		}
+		return $this;
 	}
 	
 	function render_start()
