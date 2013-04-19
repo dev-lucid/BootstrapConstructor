@@ -15,6 +15,7 @@ abstract class bsc_widget
 		$this->default_option = null;
 		$this->disable_translate = false;
 		$this->options = array(
+			'icon'=>null,
 			'tag'=>'',
 			'css'=>array(),
 			'style'=>'',
@@ -107,6 +108,11 @@ abstract class bsc_widget
 
 		}
 		return $this;
+	}
+	
+	protected function __get_icon()
+	{
+		return (is_null($this->options['icon']))?'':'<i class="icon-'.$this->options['icon'].'"></i> ';
 	}
 	
 	protected function __get_css()

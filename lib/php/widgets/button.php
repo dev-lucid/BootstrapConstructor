@@ -34,9 +34,14 @@ class bsc_widget_button extends bsc_widget
 	
 	function render_start($data = array())
 	{
-
+		if(isset($this->options['css']['dropdown-toggle']))
+			$this->attributes[] = ' data-toggle="dropdown"';
+			
 		$html = parent::render_start($data);
+		$html .= $this->__get_icon();
 		$html .= $this->__translate($this->options['label']);
+		if(isset($this->options['css']['dropdown-toggle']))
+			$html .= ' <span class="caret"></span>';
 		return $html;
 	}
 }

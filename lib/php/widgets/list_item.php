@@ -15,6 +15,7 @@ class bsc_widget_list_item extends bsc_widget
 	{
 		global $__bsc;
 		$html = parent::render_start();
+		$html .= $this->__get_icon();
 		$html .= $this->__translate($this->options['text']);
 		return $html;
 	}

@@ -22,6 +22,7 @@ class bsc_widget_label extends bsc_widget
 		}
 		else
 		{
+			$html .= $this->__get_icon();
 			$html .= $this->__translate($this->options['text']);
 		
 		}
@@ -36,6 +37,7 @@ class bsc_widget_label extends bsc_widget
 		$html = '';
 		if(isset($this->options['css']['checkbox']))
 		{
+			$html .= $this->__get_icon();
 			$html .= $this->__translate($this->options['text']);
 		}
 		
