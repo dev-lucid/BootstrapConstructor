@@ -10,6 +10,22 @@ class bsc_widget_button_group extends bsc_widget
 		$this->options['tag'] = 'div';
 		$this->option('class','btn-group');
 	}
+	
+	
+	function option($name,$value)
+	{
+		switch($name)
+		{
+			case 'toggle':
+				$this->attributes['data-toggle'] = 'buttons-'.$value;
+				break;
+			default:
+				parent::option($name,$value);
+				break;
+		}
+		return $this;
+	}
+	
 }
 
 ?>

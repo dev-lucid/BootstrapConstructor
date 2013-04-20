@@ -17,6 +17,9 @@ class bsc_widget_button extends bsc_widget
 	{
 		switch($name)
 		{
+			case 'toggleable':
+				$this->attributes['data-toggle'] = 'button';
+				break;
 			case 'dropdown':
 				$this->class('dropdown-toggle');
 				break;

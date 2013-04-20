@@ -15,8 +15,8 @@ class bsc_widget_page extends bsc_widget
 		$this->options['description'] = '';
 		$this->options['keywords'] = '';
 		
-		$this->options['css'] = array();
-		$this->options['js'] = array();
+		$this->options['stylesheets'] = array();
+		$this->options['javascripts'] = array();
 		
 	}
 	
@@ -25,12 +25,17 @@ class bsc_widget_page extends bsc_widget
 		switch($name)
 		{
 			case 'js':
+				if(is_array($value))
+					foreach($value as $include)
+						$this->options['javascripts'][] = $include;
+				else
+					$this->options['javascripts'][] = $value;
 			case 'css':
 				if(is_array($value))
 					foreach($value as $include)
-						$this->options[$name][] = $include;
+						$this->options['stylesheets'][] = $include;
 				else
-					$this->options[$name][] = $value;
+					$this->options['stylesheets'][] = $value;
 				break;
 			default:
 				parent::option($name,$value);
@@ -57,12 +62,12 @@ class bsc_widget_page extends bsc_widget
 		$html .= '<meta name="keywords" content="'.$this->options['keywords'].'" />';
 		$html .= '<meta name="author" content="'.$this->options['author'].'" />';
 		
-		foreach($this->options['css'] as $css)
+		foreach($this->options['stylesheets'] as $css)
 		{
 			$html .= '<link rel="stylesheet" href="'.$css.'" />';
 		}
 
-		foreach($this->options['js'] as $js)
+		foreach($this->options['javascripts'] as $js)
 		{
 			$html .= '<script language="Javascript" src="'.$js.'"></script>';
 		}
