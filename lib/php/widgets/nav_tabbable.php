@@ -12,7 +12,7 @@ class bsc_widget_nav_tabbable extends bsc_widget
 		$this->class('tabbable');
 		$this->options['name'] = '';
 		$this->options['tag'] = 'div';
-		$this->options['active'] = 0;
+		$this->options['current'] = 0;
 		
 		$this->add(
 			bsc::nav('tabs'),
@@ -65,8 +65,8 @@ class bsc_widget_nav_tabbable extends bsc_widget
 		global $__bsc;
 		
 		# set the active attribute for the correct tab label / pane
-		$this->children[0]->children[$this->options['active']]->class('active');
-		$this->children[1]->children[$this->options['active']]->class('active');
+		$this->children[0]->children[$this->options['current']]->class('active');
+		$this->children[1]->children[$this->options['current']]->class('active');
 		
 		return parent::render_start($data);
 	}
