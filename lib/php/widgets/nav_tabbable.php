@@ -18,6 +18,9 @@ class bsc_widget_nav_tabbable extends bsc_widget
 			bsc::nav('tabs'),
 			bsc::div()->class('tab-content')
 		);
+		
+		$this->tabs =& $this->children[0]->children;
+		$this->panes =& $this->children[1]->children;
 	}
 	
 	function option($name,$value)

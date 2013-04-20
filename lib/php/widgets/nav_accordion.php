@@ -13,6 +13,9 @@ class bsc_widget_nav_accordion extends bsc_widget
 		$this->options['tag'] = 'div';
 		$this->options['current'] = 0;
 		$this->class('accordion');
+		
+		$this->tabs = array();
+		$this->panes = array();
 	}
 	
 	
@@ -24,24 +27,30 @@ class bsc_widget_nav_accordion extends bsc_widget
 		$content = (is_string($content))?bsc::text($content):$content;
 		$idx = count($this->children);
 		
+		$new_label = bsc::anchor($label)
+			->class('accordion-toggle')
+			->attribute('data-toggle','collapse')
+			->attribute('data-parent','#'.$this->attributes['id'])
+			->attribute('data-target','#'.$this->attributes['id'].'-'.$idx);
+		$new_body = bsc::div()
+			->class('accordion-inner')
+			->add($content);
+		
+		$this->tabs[] = $new_label;
+		$this->panes[] = $new_body;
+		
 		$group = bsc::div()
 			->class('accordion-group')
 			->add(
 			bsc::div()->class('accordion-heading')->add(
-				bsc::anchor($label)
-					->class('accordion-toggle')
-					->attribute('data-toggle','collapse')
-					->attribute('data-parent','#'.$this->attributes['id'])
-					->attribute('data-target','#'.$this->attributes['id'].'-'.$idx)
+				$new_label
 			),
 			bsc::div()
 				->class('accordion-body')
 				->class('collapse')
 				->id($this->attributes['id'].'-'.$idx)
 				->add(
-					bsc::div()
-						->class('accordion-inner')
-						->add($content)
+					$new_body
 				)
 		);
 		
