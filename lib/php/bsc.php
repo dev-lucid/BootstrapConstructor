@@ -6,7 +6,7 @@
 global $__bsc;
 $__bsc= array(
 	'widget_search_paths'=>array(__DIR__.'/widgets/'),
-	'events'=>array('onclick','onkeydown','onkeyup','onmouseover','onmouseout','onchange','onfocus','onblur','onsubmit'),
+	'events'=>array('onclick','onkeydown','onkeyup','onmouseover','onmouseout','onchange','onfocus','onblur','onsubmit','onload'),
 	'hooks'=>array(),
 );
 
@@ -78,7 +78,7 @@ class bsc
 	
 	public static function __callStatic($type,$options)
 	{
-		return bsc::construct($type,$options[0]);
+		return bsc::construct($type,(isset($options[0]))?$options[0]:null);
 	}
 }
 

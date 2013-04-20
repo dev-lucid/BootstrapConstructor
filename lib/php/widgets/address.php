@@ -44,10 +44,11 @@ class bsc_widget_address extends bsc_widget
 
 	protected function __get_value($data,$to_render)
 	{
-		$val = $this->options[$to_render];
-		if(isset($data[$this->options['fields'][$to_render]]) && $data[$this->options['fields'][$to_render]] != '')
+		$val = (array_key_exists($to_render,$this->options))?$this->options[$to_render]:null;
+		if(array_key_exists($this->options['fields'].'',$data) && array_key_exists($to_render,$data[$this->options['fields']]))
 		{
-			$val = $data[$this->options['fields'][$to_render]];
+			if( $data[$this->options['fields'][$to_render]] != '' )
+				$val = $data[$this->options['fields'][$to_render]];
 		}
 		return $val;
 	}
