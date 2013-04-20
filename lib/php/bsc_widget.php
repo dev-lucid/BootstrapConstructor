@@ -111,13 +111,15 @@ abstract class bsc_widget
 			}
 			else if (is_object($params[$i]))
 			{
-				$params[$i]->parent =& $this;
+				jvc::log('about to set parent');
+				$params[$i]->parent = $this;
+				jvc::log('parent set!');
 				$this->children[] = $params[$i];
 			}
 			else
 			{
 				$widget = bsc::construct($params[$i],$params[$i+1]);
-				$widget->parent =& $this;
+				$widget->parent = $this;
 				$this->children[] = $widget;
 				$i++;
 			}
