@@ -77,6 +77,8 @@ abstract class bsc_widget
 			default:
 				if(in_array($name,$this->option_attributes))
 				{
+					if($name == 'id')
+						$__bsc['id_positions'][$value] = $this;
 					$this->attributes[$name] = $value;
 				}
 				else if(in_array($name,$__bsc['events']))
@@ -103,7 +105,8 @@ abstract class bsc_widget
 	public function add()
 	{
 		$params = func_get_args();
-		for($i=0;$i<count($params);$i++)
+		$param_count = count($params);
+		for($i=0;$i<$param_count;$i++)
 		{
 			if(is_array($params[$i]))
 			{
@@ -111,20 +114,28 @@ abstract class bsc_widget
 			}
 			else if (is_object($params[$i]))
 			{
-				jvc::log('about to set parent');
+				#bsc::log('about to set parent');
 				$params[$i]->parent = $this;
-				jvc::log('parent set!');
+				#bsc::log('parent set!');
 				$this->children[] = $params[$i];
 			}
 			else
 			{
-				$widget = bsc::construct($params[$i],$params[$i+1]);
-				$widget->parent = $this;
-				$this->children[] = $widget;
-				$i++;
+				$this->add(bsc::text($params[$i]));
+				
 			}
 
 		}
+		return $this;
+	}
+	
+	public function add_to_id()
+	{
+		global $__bsc;
+		$params = func_get_args();
+		$id = array_shift($params);
+		bsc::log('trying to add to id '.$id);
+		$__bsc['id_positions'][$id]->add($params[0]);
 		return $this;
 	}
 	

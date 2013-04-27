@@ -39,7 +39,6 @@ class bsc_widget_pagination extends bsc_widget
 		$html = parent::render_start($data);
 		$html .= '<ul>';
 		
-		jvc::log(print_r($this->options,true));
 		
 		if($this->options['render_first'] == true)
 			$html .= '<li><a'.$this->__pager('first').'>'.$this->options['first'].'</a></li>';
@@ -58,8 +57,6 @@ class bsc_widget_pagination extends bsc_widget
 		if($this->options['render_last'] == true)
 			$html .= '<li><a'.$this->__pager('last').'>'.$this->options['last'].'</a></li>';
 	
-		jvc::log($html);
-		
 		return $html;
 	}
 	

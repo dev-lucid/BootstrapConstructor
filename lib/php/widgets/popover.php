@@ -22,7 +22,7 @@ class bsc_widget_popover extends bsc_widget
 	
 	public function __set($name, $value)
 	{
-		jvc::log('__set called: '.$name);
+		#bsc::log('__set called: '.$name);
 		$this->$name = $value;
 		
 		if($name == 'parent')

@@ -8,6 +8,7 @@ $__bsc= array(
 	'widget_search_paths'=>array(__DIR__.'/widgets/'),
 	'events'=>array('onclick','onkeydown','onkeyup','onmouseover','onmouseout','onchange','onfocus','onblur','onsubmit','onload'),
 	'hooks'=>array(),
+	'id_positions'=>array(),
 );
 
 class bsc
