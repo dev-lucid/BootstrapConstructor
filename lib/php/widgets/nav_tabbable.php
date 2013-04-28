@@ -50,7 +50,7 @@ class bsc_widget_nav_tabbable extends bsc_widget
 				->attribute('data-toggle','tab')
 		);
 		
-		$content = bsc::div()->class('tab-pane')
+		$content = bsc::div()->class('tab-pane')->class('fade')
 			->id($new_id)
 			->add(
 				( (is_object($content))? $content : bsc::text($content) )
@@ -69,7 +69,7 @@ class bsc_widget_nav_tabbable extends bsc_widget
 		
 		# set the active attribute for the correct tab label / pane
 		$this->children[0]->children[$this->options['current']]->class('active');
-		$this->children[1]->children[$this->options['current']]->class('active');
+		$this->children[1]->children[$this->options['current']]->class('active')->class('in');
 		
 		return parent::render_start($data);
 	}
