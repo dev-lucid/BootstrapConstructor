@@ -86,6 +86,12 @@ abstract class bsc_widget
 			case 'style':
 				$this->options['style'] .= $value;
 				break;
+			case 'pull':
+				$this->options['css']['pull-'.$value] = true;
+				break;
+			case 'clearfix': case 'muted':
+				$this->options['css'][$name] = true;
+				break;
 			default:
 				if(in_array($name,$this->option_attributes))
 				{
