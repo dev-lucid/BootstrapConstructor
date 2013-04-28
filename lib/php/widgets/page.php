@@ -14,6 +14,7 @@ class bsc_widget_page extends bsc_widget
 		$this->options['title'] = '';
 		$this->options['description'] = '';
 		$this->options['keywords'] = '';
+		$this->options['no_cache'] = true;
 		
 		$this->options['stylesheets'] = array();
 		$this->options['javascripts'] = array();
@@ -61,6 +62,20 @@ class bsc_widget_page extends bsc_widget
 		$html .= '<meta name="description" content="'.$this->options['description'].'" />';
 		$html .= '<meta name="keywords" content="'.$this->options['keywords'].'" />';
 		$html .= '<meta name="author" content="'.$this->options['author'].'" />';
+		$html .= '<meta http-equiv="content-type" content="text/html;charset=utf-8" />';
+		
+		if($this->options['favicon'] != false)
+		{
+			$path_parts = pathinfo($this->options['favicon']);
+			$html .= '<link rel="icon" type="image/'.$path_parts['extension'].'" href="'.$this->options['favicon'].'" />';
+		}
+		
+		if($this->options['no_cache'])
+		{
+			$html .= '<meta http-equiv="pragma" content="no-cache" />';
+			$html .= '<meta http-equiv="cache-control" content="no-cache" />';
+			$html .= '<meta http-equiv="expires" content="0" />';
+		}
 		
 		foreach($this->options['stylesheets'] as $css)
 		{

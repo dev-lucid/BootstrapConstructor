@@ -7,6 +7,8 @@ abstract class bsc_widget
 {
 	public function __construct($type,$options=array())
 	{
+		global $__bsc;
+		
 		$this->parent = null;
 		$this->children = array();
 		$this->events = array();
@@ -31,6 +33,16 @@ abstract class bsc_widget
 		}
 		
 		$this->options = $this->__options($options);
+		
+		$class = get_class($this);
+		if(isset($__bsc['autooptions'][$class]) && is_array($__bsc['autooptions'][$class]))
+		{
+			bsc::log('found autooptions for '.$class);
+			foreach($__bsc['autooptions'][$class] as $name=>$value)
+			{
+				$this->option($name,$value);
+			}
+		}
 	}
 	
 	public function init()

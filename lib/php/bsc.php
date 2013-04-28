@@ -9,6 +9,8 @@ $__bsc= array(
 	'events'=>array('onclick','onkeydown','onkeyup','onmouseover','onmouseout','onchange','onfocus','onblur','onsubmit','onload'),
 	'hooks'=>array(),
 	'id_positions'=>array(),
+	'autooptions'=>array(
+	),
 );
 
 class bsc
