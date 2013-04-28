@@ -27,7 +27,7 @@ abstract class bsc_widget
 		);
 		$this->init();
 		
-		if(!is_array($options) && !is_null($this->default_option))
+		if(!is_array($options) && !is_null($this->default_option) && !is_null($options))
 		{
 			$options = array($this->default_option.''=>$options);
 		}
@@ -198,7 +198,7 @@ abstract class bsc_widget
 		}
 		return $html;
 	}
-	
+
 	public function render($data=array())
 	{
 		$html = '';

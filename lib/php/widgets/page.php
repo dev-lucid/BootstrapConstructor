@@ -89,7 +89,7 @@ class bsc_widget_page extends bsc_widget
 		$html .= '</head>';
 		
 		$html .= parent::render_start();
-		
+		$html .= '<div id="bsc_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="bsc_modal_label" aria-hidden="true"></div>';
 		
 		return $html;
 	}
