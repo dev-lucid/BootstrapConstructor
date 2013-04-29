@@ -11,7 +11,7 @@ class bsc_widget_modal extends bsc_widget
 		$this->options['tag'] = 'div';
 		$this->class('modal-body');
 
-		$this->header = bsc::heading()->id('bsc_modal_header')->level(3);
+		$this->header = bsc::heading()->class('modal-title')->id('bsc_modal_header')->level(4);
 		$this->footer = bsc::div()->class('modal-footer');
 	}
 	
@@ -34,7 +34,7 @@ class bsc_widget_modal extends bsc_widget
 		global $__bsc;
 		
 		$html = bsc::div()->class('modal-header')->add(
-			bsc::button('x')->class('close')->attribute('data-dismiss','modal')->attribute('aria-hidden','true'),
+			bsc::button('&times;')->class('close')->attribute('data-dismiss','modal')->attribute('aria-hidden','true'),
 			$this->header
 		)->render();
 			

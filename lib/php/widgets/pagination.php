@@ -9,7 +9,7 @@ class bsc_widget_pagination extends bsc_widget
 	{
 		$this->default_option = 'pages';
 		$this->class('pagination');
-		$this->options['tag'] = 'div';
+		$this->options['tag'] = 'ul';
 		$this->options['pages'] = 0;
 		$this->options['onpagechange'] = null;
 		
@@ -37,7 +37,6 @@ class bsc_widget_pagination extends bsc_widget
 		global $__bsc;
 		
 		$html = parent::render_start($data);
-		$html .= '<ul>';
 		
 		
 		if($this->options['render_first'] == true)
@@ -47,7 +46,12 @@ class bsc_widget_pagination extends bsc_widget
 			
 		for($i=1;$i<=$this->options['pages']; $i++)
 		{
-			$html .= '<li><a';
+			if(isset($this->attributes['id']) && $this->attributes['id'] != '')
+				$html .= '<li id="'.$this->attributes['id'].'-'.$i.'">';
+			else
+				$html .= '<li>';
+				
+			$html .= '<a';
 			$html .= $this->__pager($i);
 			$html .= '>'.$i.'</a></li>';
 		}
@@ -64,7 +68,6 @@ class bsc_widget_pagination extends bsc_widget
 	{
 		global $__bsc;
 		
-		$html = '</ul>';
 		$html .= parent::render_end($data);
 		
 		return $html;

@@ -168,7 +168,9 @@ abstract class bsc_widget
 		
 		if(isset($this->options['span']) && is_numeric($this->options['span']))
 		{
-			$this->options['css']['span'.$this->options['span']] = true;
+			#$this->options['css']['span'.$this->options['span']] = true;
+			$this->options['css']['col'] = true;
+			$this->options['css']['col-lg-'.$this->options['span']] = true;
 		}
 		
 		$classes = array_keys($this->options['css']);

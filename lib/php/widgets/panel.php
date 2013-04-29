@@ -3,25 +3,23 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-class bsc_widget_progress_bar extends bsc_widget
+class bsc_widget_panel extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'width';
+		$this->default_option = 'title';
 		$this->options['tag'] = 'div';
-		$this->options['width'] = 0;
-		$this->class('progress-bar');
+		$this->options['title'] = '';
+		$this->class('panel');
 	}
+	
 	
 	function option($name,$value)
 	{
 		switch($name)
 		{
-			case 'striped':
-				$this->class('progress-striped');
-				break;
 			case 'emphasis':
-				$this->options['css']['bar-'.$value] = true;
+				$this->options['css']['panel-'.$value] = true;
 				break;
 			default:
 				parent::option($name,$value);
@@ -30,10 +28,15 @@ class bsc_widget_progress_bar extends bsc_widget
 		return $this;
 	}
 	
-	function render_start($data = array())
+	function render_start($data)
 	{
-		$this->style('width: '.$this->options['width'].'%');
-		return parent::render_start($data);
+		$html = parent::render_start();
+		
+		if($this->options['title'] != '')
+		{
+			$html .= bsc::div($this->options['title'])->class('panel-heading')->render();
+		}
+		return $html;
 	}
 }
 

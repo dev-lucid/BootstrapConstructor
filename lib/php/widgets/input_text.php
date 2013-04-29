@@ -45,20 +45,15 @@ class bsc_widget_input_text extends bsc_widget_input
 		$append_count = count($this->options['append']);
 		if(($prepend_count + $append_count) > 0)
 		{
-			$class = '';
-			$class .= ($prepend_count > 0)?'input-prepend':'';
-			$class .= ($class == '')?'':' ';
-			$class .= ($append_count > 0)?'input-append':'';
-			
-			$html .= '<div class="'.$class.'">';
+			$html .= '<div class="input-group">';
 		}
 		
 		foreach($this->options['prepend'] as $prepend)
 		{
 			if(is_object($prepend))
-				$html .= $prepend->render($data);
+				$html .= '<span class="input-group-btn">'.$prepend->render($data).'</span>';
 			else
-				$html .= '<span class="add-on">'.$this->__translate($prepend).'</span>';
+				$html .= '<span class="input-group-addon">'.$this->__translate($prepend).'</span>';
 		}
 		
 		$html .= '<input'.$this->get_attributes() . ' />';
@@ -67,9 +62,14 @@ class bsc_widget_input_text extends bsc_widget_input
 		foreach($this->options['append'] as $append)
 		{
 			if(is_object($append))
-				$html .= $append->render($data);
+			{
+
+				$html .= '<span class="input-group-btn">'.$append->render($data).'</span>';
+			}
 			else
-				$html .= '<span class="add-on">'.$this->__translate($append).'</span>';
+			{
+				$html .= '<span class="input-group-addon">'.$this->__translate($append).'</span>';
+			}
 		}
 		
 		if(($prepend_count + $append_count) > 0)
