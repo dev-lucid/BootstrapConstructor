@@ -157,11 +157,6 @@ abstract class bsc_widget
 		return $this;
 	}
 	
-	protected function __get_icon()
-	{
-		return (is_null($this->options['icon']))?'':'<i class="icon-'.$this->options['icon'].'"></i> ';
-	}
-	
 	protected function __get_css()
 	{
 		$html = '';
@@ -260,6 +255,15 @@ abstract class bsc_widget
 	function __toString()
 	{
 		return $this->render();
+	}
+	
+	function __render_icon($pos)
+	{
+		if(isset($this->options[$pos.'icon']))
+		{
+			return (($pos == 'pre')?'':' ').'<i class="icon-'.$this->options[$pos.'icon'].'"></i>'.(($pos == 'pre')?' ':'');
+		}
+		return '';
 	}
 }
 

@@ -32,8 +32,9 @@ class bsc_widget_submit extends bsc_widget
 	{
 		global $__bsc;
 		$html = '<'.$this->options['tag'].' type="submit"'.$this->get_attributes().'>';
-		$html .= $this->__get_icon();
+		$html .= $this->__render_icon('pre');
 		$html .= $this->__translate($this->options['label']);
+		$html .= $this->__render_icon('post');
 		return $html;
 	}
 }

@@ -36,12 +36,14 @@ class bsc_widget_anchor extends bsc_widget
 			$this->attributes['data-toggle'] = 'dropdown';
 			
 		$html = parent::render_start();
-		$html .= $this->__get_icon();
+		$html .= $this->__render_icon('pre');
 		$html .= $this->__translate($this->options['text']);
 		
 		if(isset($this->options['css']['dropdown-toggle']))
 			$html .= ' <span class="caret"></span>';
 			
+		$html .= $this->__render_icon('post');
+
 		return $html;
 	}
 

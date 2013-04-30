@@ -9,6 +9,7 @@ class bsc_widget_navbar extends bsc_widget
 	{
 		$this->default_option = 'type';
 		$this->class('navbar');
+		$this->class('navbar-inverse');
 		$this->options['tag'] = 'div';
 		$this->options['responsive'] = true;
 		$this->options['brand'] = null;
@@ -20,21 +21,22 @@ class bsc_widget_navbar extends bsc_widget
 		global $__bsc;
 		
 		$html = parent::render_start($data);
-		$html .= '<div class="navbar-inner">';
-		
+		$html .= '<div class="container">';
 		if($this->options['responsive'] == true)
 		{
-			$html .= '<div class="container">';
-			$html .= '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>';
+			
+			$html .= '<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>';
 			
 			$html .= $this->__render_brand();
 			
-			$html .= '<div class="nav-collapse collapse">';
 		}
 		else
 		{
 			$html .= $this->__render_brand();
 		}
+		
+		$html .= '<div class="nav-collapse collapse navbar-responsive-collapse">';
+		$html .= '<ul class="nav navbar-nav">';
 		
 		return $html;
 	}
@@ -44,7 +46,7 @@ class bsc_widget_navbar extends bsc_widget
 		$html = '';
 		if(is_string($this->options['brand']))
 		{
-			$this->options['brand'] = bsc::anchor($this->options['brand'])->class('brand')->href($this->options['brand_url']);
+			$this->options['brand'] = bsc::anchor($this->options['brand'])->class('navbar-brand')->href($this->options['brand_url']);
 		}
 		if(is_object($this->options['brand']))
 		{
@@ -58,12 +60,8 @@ class bsc_widget_navbar extends bsc_widget
 	{
 		global $__bsc;
 		
-		$html = '</div>';
-
-		if($this->options['responsive'] == true)
-			$html .= '</div></div>';
-
-		$html = parent::render_end($data);
+		$html = '</ul></div></div>';
+		$html .= parent::render_end($data);
 		
 		return $html;
 	}

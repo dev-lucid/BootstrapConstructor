@@ -37,8 +37,9 @@ class bsc_widget_input_label extends bsc_widget
 		$html = '';
 		if(isset($this->options['css']['checkbox']))
 		{
-			$html .= $this->__get_icon();
+			$html .= $this->__render_icon('pre');
 			$html .= $this->__translate($this->options['text']);
+			$html .= $this->__render_icon('post');
 		}
 		
 		if($this->options['tag'] == '')

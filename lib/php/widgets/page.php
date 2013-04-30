@@ -15,6 +15,7 @@ class bsc_widget_page extends bsc_widget
 		$this->options['description'] = '';
 		$this->options['keywords'] = '';
 		$this->options['no_cache'] = true;
+		$this->options['javascript'] = '';
 		
 		$this->options['stylesheets'] = array();
 		$this->options['javascripts'] = array();
@@ -86,6 +87,14 @@ class bsc_widget_page extends bsc_widget
 		{
 			$html .= '<script language="Javascript" src="'.$js.'"></script>';
 		}
+		
+		if($this->options['javascript'] != '')
+		{
+			$html .= '<script language="Javascript">';
+			$html .= "\n\t\t<!"."--\n".$this->options['javascript']."\n-->\n";
+			$html .='</script>';
+		}
+		
 		$html .= '</head>';
 		
 		$html .= parent::render_start();
