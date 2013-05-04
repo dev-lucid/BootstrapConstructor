@@ -7,7 +7,7 @@ class bsc_widget_progress extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'width';
+		$this->option_order = array('width','emphasis','striped');
 		$this->options['tag'] = 'div';
 		$this->options['width'] = 0;
 		$this->class('progress');

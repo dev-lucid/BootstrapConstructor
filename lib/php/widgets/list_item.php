@@ -7,7 +7,7 @@ class bsc_widget_list_item extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'text';
+		$this->option_order = array('text');
 		$this->options['tag'] = 'li';
 		$this->option('text','');
 	}

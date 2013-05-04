@@ -7,7 +7,7 @@ class bsc_widget_page extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'title';
+		$this->option_order = array('title','author','title','description','keywords','js','css','javascript');
 		$this->options['tag'] = 'body';
 		
 		$this->options['author'] = '';
@@ -32,6 +32,7 @@ class bsc_widget_page extends bsc_widget
 						$this->options['javascripts'][] = $include;
 				else
 					$this->options['javascripts'][] = $value;
+				break;
 			case 'css':
 				if(is_array($value))
 					foreach($value as $include)
@@ -82,7 +83,8 @@ class bsc_widget_page extends bsc_widget
 		{
 			$html .= '<link rel="stylesheet" href="'.$css.'" />';
 		}
-
+		#print_r($this->options['javascripts']);
+		
 		foreach($this->options['javascripts'] as $js)
 		{
 			$html .= '<script language="Javascript" src="'.$js.'"></script>';
@@ -98,14 +100,14 @@ class bsc_widget_page extends bsc_widget
 		$html .= '</head>';
 		
 		$html .= parent::render_start();
-		$html .= '<div class="modal-dialog"><div class="modal-content" id="bsc_modal"></div></div>';
+		$html .= '<div class="modal fade in"><div class="modal-dialog"><div class="modal-content" id="bsc_modal"></div></div></div>';
 		
 		return $html;
 	}
 	
 	function render_end($data)
 	{
-		return parent::render_start($data).'</html>';
+		return parent::render_end($data).'</html>';
 	}
 }
 

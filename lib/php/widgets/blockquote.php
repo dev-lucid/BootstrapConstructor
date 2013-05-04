@@ -7,7 +7,7 @@ class bsc_widget_blockquote extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'text';
+		$this->option_order = array('text','source','source_title');
 		$this->options['tag'] = 'blockquote';
 		$this->option('text','');
 		$this->option('source','');

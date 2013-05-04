@@ -7,7 +7,7 @@ class bsc_widget_col extends bsc_widget
 {
 	function init()
 	{
-		$this->deafult_option = 'width';
+		$this->option_order = array('width');
 		$this->options['width'] = 0;
 	}
 	

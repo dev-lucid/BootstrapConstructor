@@ -7,7 +7,7 @@ class bsc_widget_nav_accordion extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'id';
+		$this->option_order = array('id');
 		
 		$this->attributes['id'] = '';
 		$this->options['tag'] = 'div';

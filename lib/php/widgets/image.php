@@ -7,7 +7,7 @@ class bsc_widget_image extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'src';
+		$this->option_order = array('src','width','height','alt');
 		$this->options['tag'] = 'img';
 		$this->options['base_path'] = '';
 		

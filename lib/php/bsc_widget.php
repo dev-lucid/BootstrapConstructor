@@ -5,16 +5,18 @@
 
 abstract class bsc_widget
 {
-	public function __construct($type,$options=array())
+	public function __construct()
 	{
 		global $__bsc;
+		
+		$args = func_get_args();
 		
 		$this->parent = null;
 		$this->children = array();
 		$this->events = array();
-		$this->type = $type;
+		$this->type = array_shift($args);
 		$this->attributes = array();
-		$this->default_option = null;
+		$this->option_order = null;
 		$this->disable_translate = false;
 		
 		$this->option_attributes = array('id','name','value');
@@ -27,13 +29,6 @@ abstract class bsc_widget
 		);
 		$this->init();
 		
-		if(!is_array($options) && !is_null($this->default_option) && !is_null($options))
-		{
-			$options = array($this->default_option.''=>$options);
-		}
-		
-		$this->options = $this->__options($options);
-		
 		$class = get_class($this);
 		if(isset($__bsc['autooptions'][$class]) && is_array($__bsc['autooptions'][$class]))
 		{
@@ -41,6 +36,21 @@ abstract class bsc_widget
 			foreach($__bsc['autooptions'][$class] as $name=>$value)
 			{
 				$this->option($name,$value);
+			}
+		}
+		
+		if(is_array($args[0]) && count($args) == 1)
+		{
+			foreach($args[0] as $key=>$value)
+			{
+				$this->option($key,$value);
+			}
+		}
+		else
+		{
+			for($i=0; $i<count($args); $i++)
+			{
+				$this->option($this->option_order[$i],$args[$i]);
 			}
 		}
 	}

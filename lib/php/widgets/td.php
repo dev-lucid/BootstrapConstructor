@@ -7,7 +7,7 @@ class bsc_widget_td extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'text';
+		$this->option_order = array('text');
 		$this->options['tag'] = 'td';
 		$this->options['text'] = '';
 	}

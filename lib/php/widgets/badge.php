@@ -7,7 +7,7 @@ class bsc_widget_badge extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'text';
+		$this->option_order = array('text','emphasis');
 		$this->options['tag'] = 'span';
 		$this->option('text','');
 		$this->option('class','badge');

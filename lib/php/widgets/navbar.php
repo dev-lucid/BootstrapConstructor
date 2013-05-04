@@ -7,7 +7,7 @@ class bsc_widget_navbar extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'type';
+		$this->option_order = array('type','brand','brand_url');
 		$this->class('navbar');
 		$this->class('navbar-inverse');
 		$this->options['tag'] = 'div';

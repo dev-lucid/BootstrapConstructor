@@ -7,7 +7,7 @@ class bsc_widget_heading extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'text';
+		$this->option_order = array('text','level');
 		$this->option('level',1);
 		$this->option('text','');
 	}

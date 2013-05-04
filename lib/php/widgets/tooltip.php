@@ -14,7 +14,7 @@ class bsc_widget_tooltip extends bsc_widget_popover
 	
 	function init()
 	{
-		$this->default_option = 'title';
+		$this->option_order = array('title','placement');
 		
 		$this->options['title'] = '';
 		$this->options['placement'] = 'top';

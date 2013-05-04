@@ -7,7 +7,7 @@ class bsc_widget_hero_unit extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'heading';
+		$this->option_order = array('heading','tagline','level');
 		$this->options['tag'] = 'div';
 		$this->option('heading','');
 		$this->option('level',1);

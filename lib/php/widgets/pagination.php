@@ -7,7 +7,7 @@ class bsc_widget_pagination extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'pages';
+		$this->option_order = array('pages','onpagechange');
 		$this->class('pagination');
 		$this->options['tag'] = 'ul';
 		$this->options['pages'] = 0;

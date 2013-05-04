@@ -7,7 +7,7 @@ class bsc_widget_panel extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'title';
+		$this->option_order = array('title');
 		$this->options['tag'] = 'div';
 		$this->options['title'] = '';
 		$this->class('panel');

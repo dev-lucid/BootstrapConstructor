@@ -7,7 +7,7 @@ class bsc_widget_modal extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'title';
+		$this->option_order = array('title');
 		$this->options['tag'] = 'div';
 		$this->class('modal-body');
 

@@ -7,7 +7,7 @@ class bsc_widget_nav extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'type';
+		$this->option_order = array('type');
 		$this->class('nav');
 		$this->options['tag'] = 'ul';
 	}

@@ -7,7 +7,7 @@ class bsc_widget_nav_tabbable extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'name';
+		$this->option_order = array('name','position');
 		
 		$this->class('tabbable');
 		$this->options['name'] = '';

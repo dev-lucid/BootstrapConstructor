@@ -9,7 +9,7 @@ class bsc_widget_popover extends bsc_widget
 	
 	function init()
 	{
-		$this->default_option = 'title';
+		$this->option_order = array('title','text','placement','trigger');
 		
 		$this->options['title'] = '';
 		$this->options['text'] = '';

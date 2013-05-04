@@ -7,12 +7,12 @@ class bsc_widget_form extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'action';
+		$this->option_order = array('name','action','onsubmit');
 		$this->options['tag'] = 'form';
 		$this->option('action','');
 		$this->option('name','');
 		$this->option('method','post');
-		$this->option('layout','');
+		$this->option('layout','horizontal');
 	}
 	
 	function render_start($data = array())

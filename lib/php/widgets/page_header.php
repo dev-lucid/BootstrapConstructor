@@ -7,7 +7,7 @@ class bsc_widget_page_header extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'heading';
+		$this->option_order = array('heading','subtext','level');
 		$this->options['tag'] = 'div';
 		$this->option('heading','');
 		$this->option('level',1);

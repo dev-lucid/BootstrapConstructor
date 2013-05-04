@@ -7,7 +7,7 @@ class bsc_widget_button extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'label';
+		$this->option_order = array('label','onclick','emphasis','size');
 		$this->options['tag'] = 'button';
 		$this->option('label','');
 		$this->option('class','btn');

@@ -7,11 +7,12 @@ class bsc_widget_input_text extends bsc_widget_input
 {
 	function init()
 	{
-		$this->default_option = 'name';
+		$this->option_order = array('name','prepend','append');
 		$this->options['tag'] = '';
 		$this->option_attributes[] = 'placeholder';
 		
 		$this->attributes['type'] = 'text';
+		$this->class('input-with-feedback');
 		$this->options['prepend'] = array();
 		$this->options['append'] = array();
 	}

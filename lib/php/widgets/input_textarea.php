@@ -7,11 +7,12 @@ class bsc_widget_input_textarea extends bsc_widget_input
 {
 	function init()
 	{
-		$this->default_option = 'name';
+		$this->option_order = array('name','rows','cols');
 		$this->options['tag'] = 'textarea';
 		$this->option_attributes[] = 'rows';
 		$this->option_attributes[] = 'cols';
 		$this->option('rows',3);
+		$this->class('input-with-feedback');
 	}
 	
 	function render_start($data)

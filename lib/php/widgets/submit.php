@@ -7,7 +7,7 @@ class bsc_widget_submit extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'label';
+		$this->option_order = array('label','emphasis','size');
 		$this->options['tag'] = 'button';
 		$this->option('label','');
 		$this->option('class','btn');

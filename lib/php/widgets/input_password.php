@@ -12,10 +12,11 @@ class bsc_widget_input_password extends bsc_widget_input_text
 {
 	function init()
 	{
-		$this->default_option = 'name';
+		$this->option_order = array('name');
 		$this->options['tag'] = '';
 		$this->attributes['type'] = 'password';
 		$this->option('help_block','');
+		$this->class('input-with-feedback');
 	}
 }
 

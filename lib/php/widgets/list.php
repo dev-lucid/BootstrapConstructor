@@ -7,7 +7,7 @@ class bsc_widget_list extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'tag';
+		$this->option_order = array('tag');
 		$this->options['tag'] = 'ul';
 	}
 }

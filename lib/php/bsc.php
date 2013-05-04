@@ -58,7 +58,7 @@ class bsc
 	{
 	}
 	
-	public static function construct($type='',$options=array())
+	public static function construct($type='')
 	{
 		global $__bsc;
 		
@@ -76,13 +76,76 @@ class bsc
 			throw new Exception('BSC: Unable to create bsc widget: '.$type.'/'.$class);
 		}
 		
-		$widget = new $class($type,$options);
+		$a = func_get_args();
+		array_shift($a);
+		$arg_count = count($a);
+		
+		switch($arg_count)
+		{
+			case 0:
+				$widget = new $class($type);
+				break;
+			case 1:
+				$widget = new $class($type,$a[0]);
+				break;
+			case 2:
+				$widget = new $class($type,$a[0],$a[1]);
+				break;
+			case 3:
+				$widget = new $class($type,$a[0],$a[1],$a[2]);
+				break;
+			case 4:
+				$widget = new $class($type,$a[0],$a[1],$a[2],$a[3]);
+				break;
+			case 5:
+				$widget = new $class($type,$a[0],$a[1],$a[2],$a[3],$a[4]);
+				break;
+			case 6:
+				$widget = new $class($type,$a[0],$a[1],$a[2],$a[3],$a[4],$a[5]);
+				break;
+			case 7:
+				$widget = new $class($type,$a[0],$a[1],$a[2],$a[3],$a[4],$a[5],$a[6]);
+				break;
+			case 8:
+				$widget = new $class($type,$a[0],$a[1],$a[2],$a[3],$a[4],$a[5],$a[6],$a[7]);
+				break;
+		}
 		return $widget;
 	}
 	
-	public static function __callStatic($type,$options)
+	public static function __callStatic($type,$a)
 	{
-		return bsc::construct($type,(isset($options[0]))?$options[0]:null);
+		$arg_count = count($a);
+		switch($arg_count)
+		{
+			case 0:
+				return bsc::construct($type);
+				break;
+			case 1:
+				return bsc::construct($type,$a[0]);
+				break;
+			case 2:
+				return bsc::construct($type,$a[0],$a[1]);
+				break;
+			case 3:
+				return bsc::construct($type,$a[0],$a[1],$a[2]);
+				break;
+			case 4:
+				return bsc::construct($type,$a[0],$a[1],$a[2],$a[3]);
+				break;
+			case 5:
+				return bsc::construct($type,$a[0],$a[1],$a[2],$a[3],$a[4]);
+				break;
+			case 6:
+				return bsc::construct($type,$a[0],$a[1],$a[2],$a[3],$a[4],$a[5]);
+				break;
+			case 7:
+				return bsc::construct($type,$a[0],$a[1],$a[2],$a[3],$a[4],$a[5],$a[6]);
+				break;
+			case 8:
+				return bsc::construct($type,$a[0],$a[1],$a[2],$a[3],$a[4],$a[5],$a[6],$a[7]);
+				break;
+		}
 	}
 }
 

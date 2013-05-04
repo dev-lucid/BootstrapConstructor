@@ -12,7 +12,7 @@ class bsc_widget_input_radio extends bsc_widget_input_checkbox
 {
 	function init()
 	{
-		$this->default_option = 'name';
+		$this->option_order = array('name');
 		$this->options['tag'] = '';
 		$this->attributes['type'] = 'radio';
 		$this->option('checked',false);

@@ -7,7 +7,7 @@ class bsc_widget_input_select extends bsc_widget_input
 {
 	function init()
 	{
-		$this->default_option = 'name';
+		$this->option_order = array('name');
 		$this->options['tag'] = 'select';
 		$this->option('name','');
 		$this->option('value','');

@@ -7,7 +7,7 @@ class bsc_widget_alert extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'title';
+		$this->option_order = array('title','text','emphasis');
 		$this->options['tag'] = 'div';
 		$this->option('title','');
 		$this->option('level',4);

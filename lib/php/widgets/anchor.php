@@ -7,7 +7,7 @@ class bsc_widget_anchor extends bsc_widget
 {
 	function init()
 	{
-		$this->default_option = 'text';
+		$this->option_order = array('text','href','preicon','posticon');
 		$this->options['tag'] = 'a';
 		$this->options['text'] = '';
 	}

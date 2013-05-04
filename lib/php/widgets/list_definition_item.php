@@ -7,6 +7,7 @@ class bsc_widget_list_definition_item extends bsc_widget
 {
 	function init()
 	{
+		$this->option_order = array('term','description');
 		$this->options['term_tag'] = 'dt';
 		$this->options['description_tag'] = 'dd';
 		$this->option('term','');
