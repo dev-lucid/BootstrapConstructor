@@ -12,7 +12,7 @@ class bsc_widget_data_field_map extends bsc_widget
 	
 	function render($data)
 	{
-		bsc::log(print_r($data,true));
+		#bsc::log(print_r($data,true));
 		$html = $this->options['template'];
 		foreach($data as $key=>$value)
 		{

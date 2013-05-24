@@ -1,0 +1,88 @@
+.bsc-data-table-sorter{
+	display: none;
+}
+
+@media  only screen and (max-width: 560px),(min-device-width: 768px) and (max-device-width: 1024px)  {
+	
+	/* Force table to not be like tables anymore */
+	table.bsc-data-table,
+	table.bsc-data-table > thead,
+	table.bsc-data-table > tbody,
+	table.bsc-data-table > * > tr > th,
+	table.bsc-data-table > * > tr >  td,
+	bsc-data-table > * > tr { 
+		display: block; 
+	}
+	
+	table.bsc-data-table{
+		border-spacing:0;
+		border-collapse:collapse;
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	table.bsc-data-table > thead > tr.headers { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	table.bsc-data-table > tbody > tr > td{
+		white-space:nowrap;
+		
+	}
+	
+	table.bsc-data-table > tbody > tr > td:first-child{
+		margin-top: 20px;
+	}
+	
+	table.bsc-data-table > tbody > tr > td:before {
+		font-weight: bold;
+		display: inline-block;
+		width: 120px;
+		text-align: right;
+		margin-right: 10px;
+		white-space:nowrap;
+		content: " "attr(data-label)":  ";
+		
+
+	}
+	
+	.bsc-data-table-sorter{
+		display: inline;
+	}
+	
+	/*
+	table.bsc-data-table > * > tr:last-child > td:before , table.bsc-data-table > * > tr:last-child > td:after{
+		border: 1px solid #ccc;
+	}
+	
+	*/
+}
+
+/* super basic sort indicator. DO REPLACE WITH YOUR OWN */
+table.bsc-data-table > thead > tr > th.bsc-data-table-sort{
+	cursor: pointer;
+}
+
+table.bsc-data-table > thead > tr > th.bsc-data-table-sort-asc:before{
+	content: "\2227 ";
+}
+
+table.bsc-data-table > thead > tr > th.bsc-data-table-sort-desc:before{
+	content: "\2228 ";
+}
+
+table.bsc-data-table > thead > tr.empty{
+	display: none;
+}
+
+table.bsc-data-table > thead > tr.progress{
+	display: none;
+}
+table.bsc-data-table > thead > tr.progress > td{
+	padding: 25px 25px 10px 25px;
+}
+table.bsc-data-table > thead > tr.progress > td > span{
+	display: none;
+}
+

@@ -11,6 +11,7 @@ class bsc_widget_input_select extends bsc_widget_input
 		$this->options['tag'] = 'select';
 		$this->option('name','');
 		$this->option('value','');
+		$this->options['default'] = null;
 		$this->option('options',array());
 		$this->option('colval','');
 		$this->option('coltext','');
@@ -37,6 +38,11 @@ class bsc_widget_input_select extends bsc_widget_input
 	{
 		$html = '<select'.$this->get_attributes();
 		$html .= '>';
+		
+		if(!is_null($this->options['default']))
+		{
+			$html .= '<option value="null">'.$this->options['default'].'</option>';
+		}
 		
 		foreach($this->options['options'] as $idx=>$option)
 		{

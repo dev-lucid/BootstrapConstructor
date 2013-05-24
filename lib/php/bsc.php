@@ -7,7 +7,11 @@ global $__bsc;
 $__bsc= array(
 	'widget_search_paths'=>array(__DIR__.'/widgets/'),
 	'events'=>array('onclick','onkeydown','onkeyup','onmouseover','onmouseout','onchange','onfocus','onblur','onsubmit','onload'),
-	'hooks'=>array(),
+	'hooks'=>array(
+		'js'=>function($content){
+			return '<script language="Javascript">'.$content.'</script>';
+		},
+	),
 	'initial_js'=>'',
 	'id_positions'=>array(),
 	'autooptions'=>array(
@@ -30,7 +34,7 @@ class bsc
 	{
 		global $__bsc;
 		if(isset($__bsc['hooks'][$hook]))
-			$__bsc['hooks'][$hook]($p0,$p1,$p2,$p3,$p4,$p5,$p6);
+			return $__bsc['hooks'][$hook]($p0,$p1,$p2,$p3,$p4,$p5,$p6);
 	}
 	
 	public static function init($config = array())
