@@ -7,7 +7,7 @@ class bsc_widget_page extends bsc_widget
 {
 	function init()
 	{
-		$this->option_order = array('title','author','title','description','keywords','js','css','javascript');
+		$this->option_order = array('title','author','title','description','keywords','head_js','foot_js','css','javascript');
 		$this->options['tag'] = 'body';
 		
 		$this->options['author'] = '';
@@ -18,7 +18,8 @@ class bsc_widget_page extends bsc_widget
 		$this->options['javascript'] = '';
 		
 		$this->options['stylesheets'] = array();
-		$this->options['javascripts'] = array();
+		$this->options['head_js'] = array();
+		$this->options['foot_js'] = array();
 		
 	}
 	
@@ -26,12 +27,19 @@ class bsc_widget_page extends bsc_widget
 	{
 		switch($name)
 		{
-			case 'js':
+			case 'head_js':
 				if(is_array($value))
 					foreach($value as $include)
-						$this->options['javascripts'][] = $include;
+						$this->options['head_js'][] = $include;
 				else
-					$this->options['javascripts'][] = $value;
+					$this->options['head_js'][] = $value;
+				break;
+			case 'foot_js':
+				if(is_array($value))
+					foreach($value as $include)
+						$this->options['foot_js'][] = $include;
+				else
+					$this->options['foot_js'][] = $value;
 				break;
 			case 'css':
 				if(is_array($value))
@@ -85,9 +93,10 @@ class bsc_widget_page extends bsc_widget
 		}
 		#print_r($this->options['javascripts']);
 		
-		foreach($this->options['javascripts'] as $js)
+		foreach($this->options['head_js'] as $js)
 		{
-			$html .= '<script language="Javascript" src="'.$js.'"></script>';
+			if(trim($js) != '')
+				$html .= '<script language="Javascript" src="'.$js.'?__time='.time().'"></script>';
 		}
 		
 		if($this->options['javascript'] != '')
@@ -107,7 +116,14 @@ class bsc_widget_page extends bsc_widget
 	
 	function render_end($data)
 	{
-		return parent::render_end($data).'</html>';
+		$html = '';
+		foreach($this->options['foot_js'] as $js)
+		{
+			$html .= '<script language="Javascript" src="'.$js.'?__time='.time().'"></script>';
+		}
+		
+		$html .= parent::render_end($data).'</html>';
+		return $html;
 	}
 }
 
