@@ -7,13 +7,28 @@ class bsc_widget_navbar extends bsc_widget
 {
 	function init()
 	{
-		$this->option_order = array('type','brand','brand_url');
+		$this->option_order = array('type','brand','brand_url','inverse');
 		$this->class('navbar');
 		$this->class('primary');
 		$this->options['tag'] = 'div';
 		$this->options['responsive'] = true;
 		$this->options['brand'] = null;
 		$this->options['brand_url'] = null;
+	}
+
+	function option($name,$value=null)
+	{
+		switch($name)
+		{
+			case 'inverse':
+				if($value == true)
+					$this->class('navbar-inverse');
+				break;
+			default:
+				return parent::option($name,$value);
+				break;
+		}
+		return $this;
 	}
 
 	function render_start($data)
