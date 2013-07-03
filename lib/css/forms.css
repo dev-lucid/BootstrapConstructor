@@ -6,4 +6,6 @@ div.control-group{
 .bsc-form-error-msg{
 	display: none;
 	padding: 3px;
+	font-weight: bold;
+	font-size: 110%;
 }
