@@ -227,7 +227,7 @@ class bsc_widget_data_table extends bsc_widget
 		$html .= '<td colspan="'.(count($this->children)).'">';
 		$html .= '<div class="progress progress-striped active"><div class="progress-bar" style="width: 1%"></div></div>';
 		$html .= '<span>Sorry, this is taking longer than expected</span>';
-		$html .= '</td>';
+		$html .= '</td>';	
 		$html .= '</tr>';
 		
 		
@@ -265,17 +265,20 @@ class bsc_widget_data_table extends bsc_widget
 		if(!is_null($this->options['data']->__sql_limit))
 		{
 			# write the pager
+			$html .= '<div class="col-lg-4 col-sm-6">';
 			$html .= bsc::pagination(
 				$this->options['data']->__sql_max_page,
 				$this->options['current_page']
 			)
 				->id($this->attributes['id'].'-pager')
 				->onpagechange('bsc.widget.dataTable.objs[\''.$this->attributes['id'].'\'].changePage')
-				->type('selector')
-				->class('col-lg-3');
+				->type('selector');
+			$html .= '</div>';
+			$html .= '<div class="col-lg-4 col-sm-1">&nbsp;</div>';
+			$html .= '<div class="col-lg-4 col-sm-5">';
 			
 			# write a row count selector
-			$html .= '<select id="'.$this->attributes['id'].'-rowcount" onchange="bsc.widget.dataTable.objs[\''.$this->attributes['id'].'\'].changeRowCount($(this).val());" class="col-offset-7 col-lg-2">';
+			$html .= '<select id="'.$this->attributes['id'].'-rowcount" onchange="bsc.widget.dataTable.objs[\''.$this->attributes['id'].'\'].changeRowCount($(this).val());" class="pull-right">';
 			foreach($this->options['row_count_options'] as $option)
 			{
 				$html .= '<option value="'.$option.'"';
@@ -310,7 +313,7 @@ class bsc_widget_data_table extends bsc_widget
 				$html .= 'Sort by: '.$child->attributes['data-label'].', Reverse';
 				$html .= '</option>';
 			}
-			$html .= '</select>';
+			$html .= '</select></div>';
 		}
 		
 		$html .= '</td></tr></tfoot>';

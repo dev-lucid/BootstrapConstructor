@@ -86,3 +86,7 @@ table.bsc-data-table > thead > tr.progress > td > span{
 	display: none;
 }
 
+table.bsc-data-table > tfoot > tr > td > div > ul.pagination{
+	margin-top: 3px;
+}
+
