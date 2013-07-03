@@ -20,6 +20,9 @@ class bsc_widget_navbar extends bsc_widget
 	{
 		switch($name)
 		{
+			case 'type':
+				$this->class('navbar-'.$value);
+				break;
 			case 'inverse':
 				if($value == true)
 					$this->class('navbar-inverse');
