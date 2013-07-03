@@ -89,7 +89,7 @@ class bsc_widget_data_table extends bsc_widget
 		}
 		else if(is_a($obj,'bsc_widget_input_text'))
 		{
-			$obj->onkeyup('bsc.widget.dataTable.objs[\''.$this->attributes['id'].'\'].applyFilter(\''.$name.'\',this);');
+			$obj->onkeyup('bsc.widget.dataTable.objs[\''.$this->attributes['id'].'\'].applyDelayedFilter(\''.$name.'\',this);');
 		}
 		else if(is_a($obj,'bsc_widget_input_checkbox'))
 		{
@@ -134,13 +134,29 @@ class bsc_widget_data_table extends bsc_widget
 		}
 		
 		# apply the filters here
-		dbm::log('about to loop through filters');
+		bsc::log('about to loop through filters');
 		foreach($this->options['filters'] as $filter)
 		{
-			dbm::log('filter loop: '.$filter['field']);
+			bsc::log('filter loop: '.$filter['field']);
 			if(!is_null($filter['value']))
 			{
-				$this->options['data']->filter($filter['field'],$filter['operator'],$filter['value']);
+				if($filter['operator'] == '%')
+				{
+					$values = explode(' ',$filter['value']);
+					foreach($values as $value)
+					{
+						$value = trim($value);
+						if($value != '')
+						{
+							$this->options['data']->filter($filter['field'],$filter['operator'],$value);
+							
+						}
+					}
+				}
+				else
+				{
+					$this->options['data']->filter($filter['field'],$filter['operator'],$filter['value']);
+				}
 			}
 		}
 		
@@ -184,7 +200,7 @@ class bsc_widget_data_table extends bsc_widget
 		if(count($this->options['filter_node']->children) > 0)
 		{
 			$html .='<tr class="filters">';
-			$this->options['filter_node']->attributes['colspan'] = (count($this->children) + 1);
+			$this->options['filter_node']->attributes['colspan'] = (count($this->children));
 			$html .= $this->options['filter_node']->render();
 			$html .= '</tr>';
 		}
@@ -200,7 +216,7 @@ class bsc_widget_data_table extends bsc_widget
 		
 		# render the row to display when there's no data
 		$html .='<tr class="empty">';
-		$html .= '<td colspan="'.(count($this->children) + 1).'">';
+		$html .= '<td colspan="'.(count($this->children)).'">';
 		$html .= '<h3>'.$this->options['empty_title'].'</h3>';
 		$html .= $this->options[((count($this->options['filters']) == 0)?'empty_text':'empty_filters')];
 		$html .= '</td>';
@@ -208,7 +224,7 @@ class bsc_widget_data_table extends bsc_widget
 		
 		# render the row to display a loading bar
 		$html .='<tr class="progress">';
-		$html .= '<td colspan="'.(count($this->children) + 1).'">';
+		$html .= '<td colspan="'.(count($this->children)).'">';
 		$html .= '<div class="progress progress-striped active"><div class="progress-bar" style="width: 1%"></div></div>';
 		$html .= '<span>Sorry, this is taking longer than expected</span>';
 		$html .= '</td>';
@@ -245,7 +261,7 @@ class bsc_widget_data_table extends bsc_widget
 	{
 		$html = '<tfoot>';
 		
-		$html .= '<tr><td colspan="'.(count($this->children) + 1).'">';
+		$html .= '<tr><td colspan="'.(count($this->children)).'">';
 		if(!is_null($this->options['data']->__sql_limit))
 		{
 			# write the pager
@@ -255,10 +271,11 @@ class bsc_widget_data_table extends bsc_widget
 			)
 				->id($this->attributes['id'].'-pager')
 				->onpagechange('bsc.widget.dataTable.objs[\''.$this->attributes['id'].'\'].changePage')
-				->type('selector');
+				->type('selector')
+				->class('col-lg-3');
 			
 			# write a row count selector
-			$html .= '<select id="'.$this->attributes['id'].'-rowcount" onchange="bsc.widget.dataTable.objs[\''.$this->attributes['id'].'\'].changeRowCount($(this).val());">';
+			$html .= '<select id="'.$this->attributes['id'].'-rowcount" onchange="bsc.widget.dataTable.objs[\''.$this->attributes['id'].'\'].changeRowCount($(this).val());" class="col-offset-7 col-lg-2">';
 			foreach($this->options['row_count_options'] as $option)
 			{
 				$html .= '<option value="'.$option.'"';
