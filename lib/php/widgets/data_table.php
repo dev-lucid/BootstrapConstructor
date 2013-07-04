@@ -24,7 +24,7 @@ class bsc_widget_data_table extends bsc_widget
 		$this->options['filters'] = array();
 		$this->options['current_page'] = 0;
 		$this->options['max_page'] = 0;
-		$this->options['row_count_options'] = array(5,10,50,100,0);
+		$this->options['row_count_options'] = array(10,50,100,0);
 		$this->options['row_count'] = $this->options['row_count_options'][0];
 		$this->options['filter_node'] = bsc::td();
 		$this->options['pages_before'] = 3;
@@ -52,20 +52,8 @@ class bsc_widget_data_table extends bsc_widget
 				'current_page'=>$this->options['current_page'],
 				'row_count'=>$this->options['row_count'],
 				'max_page'=>$this->options['max_page'],
-				'data'=>array(
-				)
+				'data'=>$this->render_data(),
 			);
-			
-			foreach($this->options['data'] as $data_row)
-			{
-				$row_html = array();
-				foreach($this->children as $child)
-				{
-					$row = (is_array($data_row))?$data_row:$data_row->row_array();
-					$row_html[] = $child->render($row);
-				}
-				$out['data'][] = $row_html;
-			}
 			
 			bsc::log('preparing new datatable data!');
 			#sleep(7);
@@ -240,20 +228,32 @@ class bsc_widget_data_table extends bsc_widget
 	
 	function render_children($data)
 	{
-		$html = '<tbody>';
+		return '<tbody>'.$this->render_data().'</tbody>';
+	}
+	
+	function render_data()
+	{
+		$html = '';
 		foreach($this->options['data'] as $data_row)
 		{
-			$html .= '<tr>';
+			if(!is_array($data_row))
+			{
+				$data_row = $data_row->to_array();
+			}
+			$row = '<tr>';
 			
 			foreach($this->children as $child)
 			{
-				$row = (is_array($data_row))?$data_row:$data_row->row_array();
-				$html .= $child->render($row);
+				$row .= $child->render();
 			}
 			
-			$html .= '</tr>';
+			$row .= '</tr>';
+			foreach($data_row as $label=>$value)
+			{
+				$row = str_replace('{'.$label.'}',$value,$row);
+			}
+			$html .= $row;
 		}
-		$html .= '</tbody>';
 		return $html;
 	}
 	
