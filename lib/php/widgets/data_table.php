@@ -33,6 +33,7 @@ class bsc_widget_data_table extends bsc_widget
 		$this->options['empty_title'] = 'No data available.';
 		$this->options['empty_filters'] = 'Try removing a filter.';
 		$this->options['empty_text'] = '';
+		$this->options['formatters'] = array();
 		$this->option('class','table table-condensed');
 		$this->option('class','table-striped');
 		$this->option('class','table-bordered');
@@ -52,7 +53,7 @@ class bsc_widget_data_table extends bsc_widget
 				'current_page'=>$this->options['current_page'],
 				'row_count'=>$this->options['row_count'],
 				'max_page'=>$this->options['max_page'],
-				'data'=>$this->render_data(),
+				'data'=>$this->render_data('html'),
 			);
 			
 			bsc::log('preparing new datatable data!');
@@ -158,6 +159,9 @@ class bsc_widget_data_table extends bsc_widget
 	{
 		switch($name)
 		{	
+			case 'formatter':
+				$this->formatters[] = $value;
+				break;
 			case 'empty_title':
 			case 'empty_text':
 			case 'empty_filter':
@@ -228,33 +232,43 @@ class bsc_widget_data_table extends bsc_widget
 	
 	function render_children($data)
 	{
-		return '<tbody>'.$this->render_data().'</tbody>';
+		return '<tbody>'.$this->render_data('html').'</tbody>';
 	}
 	
-	function render_data()
+	function render_data($format)
 	{
-		$html = '';
+		$to_return = '';
 		foreach($this->options['data'] as $data_row)
 		{
+			$row = '';
 			if(!is_array($data_row))
 			{
 				$data_row = $data_row->to_array();
 			}
-			$row = '<tr>';
+			
+			if($format == 'html')
+			{
+				$row .= '<tr>';
+			}
+			
+			foreach($this->formatters as $formatter)
+			{
+				$data_row = $formatter($data_row,$format);
+			}
 			
 			foreach($this->children as $child)
 			{
-				$row .= $child->render();
+				$row .= $child->render($data_row);
 			}
 			
-			$row .= '</tr>';
-			foreach($data_row as $label=>$value)
+			if($format == 'html')
 			{
-				$row = str_replace('{'.$label.'}',$value,$row);
+				$row .= '</tr>';
 			}
-			$html .= $row;
+			
+			$to_return .= $row;
 		}
-		return $html;
+		return $to_return;
 	}
 	
 	function render_end($data)

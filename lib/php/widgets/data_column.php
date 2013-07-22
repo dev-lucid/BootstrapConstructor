@@ -61,6 +61,19 @@ class bsc_widget_data_column extends bsc_widget
 		$html .='>'.$this->attributes['data-label'].'</th>';
 		return $html;
 	}
+	
+	public function render($data=array())
+	{
+		$html = '';
+		
+		bsc::log(print_r($data,true));
+		$html .= $this->render_start($data);
+		$html .= $data[$this->options['name']];
+		$html .= $this->render_end($data);
+
+	
+		return $html;
+	}
 }
 
 ?>
