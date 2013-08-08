@@ -89,7 +89,7 @@ class bsc_widget_data_table extends bsc_widget
 			$obj->$trigger('bsc.widget.dataTable.objs[\''.$this->attributes['id'].'\'].applyFilter(\''.$name.'\',this);');			
 		}
 		
-		$this->options['filter_node']->add($obj);
+		$this->options['filter_node']->add(bsc::div()->class('col-lg-4 col-sm-6 col-12')->add($obj));
 		return $this;
 	}
 	
@@ -237,13 +237,17 @@ class bsc_widget_data_table extends bsc_widget
 	
 	function render_data($format)
 	{
+		foreach($this->children as $child)
+		{
+			$child->escape_label();
+		}
 		$to_return = '';
 		foreach($this->options['data'] as $data_row)
 		{
 			$row = '';
 			if(!is_array($data_row))
 			{
-				$data_row = $data_row->to_array();
+				$data_row = $data_row->row_array();
 			}
 			
 			if($format == 'html')

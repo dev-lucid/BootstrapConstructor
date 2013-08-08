@@ -11,6 +11,11 @@ class bsc_widget_data_column extends bsc_widget
 		$this->options['tag'] = 'td';
 	}
 	
+	function escape_label()
+	{
+		$this->attributes['data-label'] = str_replace('"','&#34;',$this->attributes['data-label']);
+	}
+	
 	function option($name,$value)
 	{
 		switch($name)

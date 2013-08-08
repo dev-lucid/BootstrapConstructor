@@ -11,6 +11,7 @@ class bsc_widget_input_select extends bsc_widget_input
 		$this->options['tag'] = 'select';
 		$this->option('name','');
 		$this->option('value','');
+		$this->option('class','form-control');
 		$this->options['default'] = null;
 		$this->option('options',array());
 		$this->option('colval','');

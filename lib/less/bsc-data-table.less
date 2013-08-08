@@ -64,12 +64,16 @@ table.bsc-data-table > thead > tr > th.bsc-data-table-sort{
 	cursor: pointer;
 }
 
-table.bsc-data-table > thead > tr > th.bsc-data-table-sort-asc:before{
-	content: "\2227 ";
-}
+table.bsc-data-table > thead > tr > th{
+	white-space: nowrap;
+	
+	.bsc-data-table-sort-asc:before{
+		content: "\2227 ";
+	}
 
-table.bsc-data-table > thead > tr > th.bsc-data-table-sort-desc:before{
-	content: "\2228 ";
+	.bsc-data-table-sort-desc:before{
+		content: "\2228 ";
+	}
 }
 
 table.bsc-data-table > thead > tr.empty{

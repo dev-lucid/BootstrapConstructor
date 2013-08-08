@@ -12,7 +12,7 @@ class bsc_widget_input_text extends bsc_widget_input
 		$this->option_attributes[] = 'placeholder';
 		
 		$this->attributes['type'] = 'text';
-		$this->class('input-with-feedback');
+		$this->class('form-control');
 		$this->options['prepend'] = array();
 		$this->options['append'] = array();
 	}
