@@ -87,8 +87,37 @@ abstract class bsc_widget
 			case 'disable_translate':
 				$this->disable_translate = true;
 				break;
-			case 'span':
-				$this->options['span'] = $value;
+			case 'col':
+				if(is_array($value))
+				{
+					$this->class('col-xs-'.$value[0]);
+					$this->class('col-sm-'.$value[1]);
+					$this->class('col-md-'.$value[2]);
+					$this->class('col-lg-'.$value[3]);
+				}
+				else
+				{
+					$this->class('col-xs-'.$value);
+					$this->class('col-sm-'.$value);
+					$this->class('col-md-'.$value);
+					$this->class('col-lg-'.$value);
+				}
+				break;
+			case 'offset':
+				if(is_array($value))
+				{
+					$this->class('col-xs-offset-'.$value[0]);
+					$this->class('col-sm-offset-'.$value[1]);
+					$this->class('col-md-offset-'.$value[2]);
+					$this->class('col-lg-offset-'.$value[3]);
+				}
+				else
+				{
+					$this->class('col-xs-offset-'.$value);
+					$this->class('col-sm-offset-'.$value);
+					$this->class('col-md-offset-'.$value);
+					$this->class('col-lg-offset-'.$value);
+				}
 				break;
 			case 'class':
 				$this->options['css'][$value] = true;
