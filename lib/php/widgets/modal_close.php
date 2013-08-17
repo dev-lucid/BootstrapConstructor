@@ -15,6 +15,7 @@ class bsc_widget_modal_close extends bsc_widget_button
 		parent::init();
 		$this->option_order = array('label','emphasis','onclick');
 		$this->options['label'] = 'Close';
+		$this->attribute('data-target','#bsc_modal_root');
 		$this->attribute('data-dismiss','modal')->attribute('aria-hidden','true');
 	}
 }

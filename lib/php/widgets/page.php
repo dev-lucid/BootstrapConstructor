@@ -109,7 +109,7 @@ class bsc_widget_page extends bsc_widget
 		$html .= '</head>';
 		
 		$html .= parent::render_start();
-		$html .= '<div class="modal fade in"><div class="modal-dialog"><div class="modal-content" id="bsc_modal"></div></div></div>';
+		$html .= '<div class="modal fade in" id="bsc_modal_root"><div class="modal-dialog"><div class="modal-content" id="bsc_modal"></div></div></div>';
 		
 		return $html;
 	}

@@ -7,7 +7,7 @@ class bsc_widget_modal extends bsc_widget
 {
 	function init()
 	{
-		$this->option_order = array('title');
+		$this->option_order = array('title','body','footer');
 		$this->options['tag'] = 'div';
 		$this->class('modal-body');
 
@@ -21,6 +21,12 @@ class bsc_widget_modal extends bsc_widget
 		{
 			case 'title':
 				$this->header->text($value);
+				break;
+			case 'body':
+				$this->add($value);
+				break;
+			case 'footer':
+				$this->footer->add($value);
 				break;
 			default:
 				parent::option($name,$value);
@@ -48,6 +54,17 @@ class bsc_widget_modal extends bsc_widget
 		$html = $this->footer->render();
 			
 		return parent::render_end($data).$html;
+	}
+	
+	function show($data)
+	{
+		global $__bsc;
+		$html = parent::render($data);
+		$js = '$(\'#bsc_modal\').parent().parent().modal();';
+		
+		jvc::log($html);
+		
+		return $__bsc['hooks']['modal_show']($this,$html,$js);
 	}
 }
 

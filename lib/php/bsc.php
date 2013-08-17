@@ -11,6 +11,9 @@ $__bsc= array(
 		'js'=>function($content){
 			return '<script language="Javascript">'.$content.'</script>';
 		},
+		'modal_show'=>function($obj,$html,$js){
+			return $html.'<script>'.$js.'</script>';
+		}
 	),
 	'initial_js'=>'',
 	'id_positions'=>array(),
