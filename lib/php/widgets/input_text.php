@@ -15,6 +15,7 @@ class bsc_widget_input_text extends bsc_widget_input
 		$this->class('form-control');
 		$this->options['prepend'] = array();
 		$this->options['append'] = array();
+		$this->options['clear_button'] = false;
 	}
 	
 	function option($name,$value=null)
@@ -71,6 +72,16 @@ class bsc_widget_input_text extends bsc_widget_input
 			{
 				$html .= '<span class="input-group-addon">'.$this->__translate($append).'</span>';
 			}
+		}
+		if($this->options['clear_button'] != false)
+		{
+			$onclick="$('input',$(this).parent()).val('');";
+			if($this->options['clear_button'] !== true)
+			{
+				$onclick .= $this->options['clear_button'];
+			}
+			$html .= '<span class="input-group-addon clickable input-clearer" style="display: none;" onclick="'.$onclick.'">&times</span>';
+			$append_count++;
 		}
 		
 		if(($prepend_count + $append_count) > 0)

@@ -9,3 +9,8 @@ div.control-group{
 	font-weight: bold;
 	font-size: 110%;
 }
+
+
+.clickable{
+	cursor: pointer;
+}
