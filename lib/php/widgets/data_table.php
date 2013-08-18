@@ -352,6 +352,13 @@ class bsc_widget_data_table extends bsc_widget
 		
 		return $html;
 	}
+	
+	public function reload($name)
+	{
+		$js = 'bsc.widget.dataTable.objs[\''.$name.'\'].refreshData();';
+		bsc::call_hook('js',$js);
+		return $js;
+	}
 }
 
 ?>
