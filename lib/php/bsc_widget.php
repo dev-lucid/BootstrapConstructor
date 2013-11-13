@@ -38,21 +38,12 @@ abstract class bsc_widget
 				$this->option($name,$value);
 			}
 		}
+	
+		for($i=0; $i<count($args); $i++)
+		{
+			$this->option($this->option_order[$i],$args[$i]);
+		}
 		
-		if(is_array($args[0]) && count($args) == 1)
-		{
-			foreach($args[0] as $key=>$value)
-			{
-				$this->option($key,$value);
-			}
-		}
-		else
-		{
-			for($i=0; $i<count($args); $i++)
-			{
-				$this->option($this->option_order[$i],$args[$i]);
-			}
-		}
 	}
 	
 	public function init()

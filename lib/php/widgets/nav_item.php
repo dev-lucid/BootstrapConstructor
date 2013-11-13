@@ -3,24 +3,24 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-class bsc_widget_anchor extends bsc_widget
+class bsc_widget_nav_item extends bsc_widget
 {
 	function init()
 	{
-		$this->option_order = array('text','href','preicon','posticon','name');
-		$this->options['tag'] = 'a';
-		$this->options['text'] = '';
+		$this->option_order = array('text','link','active','preicon','posticon');
+		$this->options['tag'] = 'li';
+		$this->option('text','');
 	}
 	
 	function option($name,$value)
 	{
 		switch($name)
 		{
-			case 'dropdown':
-				$this->class('dropdown-toggle');
+			case 'active':
+				$this->options['active'] = $value;
 				break;
-			case 'href':
-				$this->attributes['href'] = $value;
+			case 'dropdown':
+				$this->class('dropdown');
 				break;
 			default:
 				parent::option($name,$value);
@@ -32,21 +32,18 @@ class bsc_widget_anchor extends bsc_widget
 	function render_start()
 	{
 		global $__bsc;
-		if(isset($this->options['css']['dropdown-toggle']))
-			$this->attributes['data-toggle'] = 'dropdown';
+		
+		if($this->options['active'] === true)
+			$this->class('active');
 			
 		$html = parent::render_start();
+		$html .= '<a href="'.$this->options['link'].'">';
 		$html .= $this->__render_icon('pre');
 		$html .= $this->__translate($this->options['text']);
-		
-		if(isset($this->options['css']['dropdown-toggle']))
-			$html .= ' <span class="caret"></span>';
-			
 		$html .= $this->__render_icon('post');
-
+		$html .= '</a>';
 		return $html;
 	}
-
 }
 
 ?>

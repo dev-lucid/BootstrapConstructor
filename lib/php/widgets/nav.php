@@ -10,6 +10,7 @@ class bsc_widget_nav extends bsc_widget
 		$this->option_order = array('type');
 		$this->class('nav');
 		$this->options['tag'] = 'ul';
+		$this->options['type'] = 'stacked';
 	}
 	
 	function option($name,$value)
@@ -30,9 +31,6 @@ class bsc_widget_nav extends bsc_widget
 					}
 				}
 				break;
-			case 'stacked':
-				$this->class('nav-'.$name);
-				break;
 			default:
 				parent::option($name,$value);
 				break;
@@ -44,6 +42,14 @@ class bsc_widget_nav extends bsc_widget
 	{
 		global $__bsc;
 		
+		if($this->options['type'] == 'stacked')
+		{
+			$this->class('nav-pills nav-stacked');
+		}
+		else
+		{
+			$this->class('nav-'.$this->options['type']);
+		}
 		
 		return parent::render_start($data);
 	}

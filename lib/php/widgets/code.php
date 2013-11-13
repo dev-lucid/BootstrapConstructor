@@ -12,10 +12,12 @@ class bsc_widget_code extends bsc_widget
 		$this->option('text','');
 	}
 	
-	function render_start()
-	{
-		$html = parent::render_start();
-		$html .= $this->__translate($this->options['text']);
+	function render_start($data = array())
+	{			
+		$html = parent::render_start($data);
+
+		$html .= htmlentities($this->options['text']);
+		
 		return $html;
 	}
 }

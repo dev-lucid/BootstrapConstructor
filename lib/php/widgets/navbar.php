@@ -7,13 +7,25 @@ class bsc_widget_navbar extends bsc_widget
 {
 	function init()
 	{
-		$this->option_order = array('type','brand','brand_url','inverse');
+		$this->option_order = array('type','brand','brand_url','width','inverse');
 		$this->class('navbar');
-		$this->options['tag'] = 'header';
+		$this->options['tag'] = 'div';
 		$this->options['responsive'] = true;
 		$this->options['brand'] = null;
 		$this->options['brand_url'] = null;
-		$this->attributes['role'] = 'banner';
+		$this->options['width'] = null;
+		$this->options['inverse'] = false;
+		$this->options['type'] = '';
+		$this->options['form'] = null;
+		$this->attributes['role'] = 'navigation';
+		
+	}
+	
+	function add_form($form_obj)
+	{
+		$this->options['form'] = $form_obj;
+		$this->options['form']->class('navbar-form navbar-left');
+		return $this; 
 	}
 
 	function option($name,$value=null)
@@ -21,11 +33,12 @@ class bsc_widget_navbar extends bsc_widget
 		switch($name)
 		{
 			case 'type':
-				$this->class('navbar-'.$value);
+				$this->options['type'] = $value;
+				
 				break;
 			case 'inverse':
 				if($value == true)
-					$this->class('navbar-inverse');
+					$this->options['inverse'] = true;
 				break;
 			default:
 				return parent::option($name,$value);
@@ -38,18 +51,31 @@ class bsc_widget_navbar extends bsc_widget
 	{
 		global $__bsc;
 		
+		if($this->options['type'] != '')
+			$this->class('navbar-'.$this->options['type']);
+		$this->class(($this->options['inverse'] == true)?'navbar-inverse':'navbar-default');
+		
 		$html = parent::render_start($data);
-		$html .= '<div class="container">';
+
+		if(!is_null($this->options['width']))
+		{
+			$html .= '<div class="container" style="width: '.$this->options['width'].';margin-left:auto;margin-right: auto;">';
+		}
+		
 		$html .= '<div class="navbar-header">';
+		
+
 		if($this->options['responsive'] == true)
 		{
 			
-			$html .= '<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>';
+			$html .= '
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				  <span class="sr-only">Toggle navigation</span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				</button>
+			';
 			
 			$html .= $this->__render_brand();
 			
@@ -59,7 +85,7 @@ class bsc_widget_navbar extends bsc_widget
 			$html .= $this->__render_brand();
 		}
 		$html .= '</div>';
-		$html .= '<div class="navbar-collapse bs-navbar-collapse collapse" role="navigation">';
+		$html .= '<div class="collapse navbar-collapse navbar-ex1-collapse">';
 		$html .= '<ul class="nav navbar-nav">';
 		
 		return $html;
@@ -84,7 +110,19 @@ class bsc_widget_navbar extends bsc_widget
 	{
 		global $__bsc;
 		
-		$html = '</ul></div></div>';
+		$html = '</ul>';
+		
+		if(!is_null($this->options['form']))
+		{
+			$html .= $this->options['form']->render($data);
+		}
+		
+		if(!is_null($this->options['width']))
+		{
+			$html .= '</div>';
+		}
+		
+		$html .= '</div>';
 		$html .= parent::render_end($data);
 		
 		return $html;

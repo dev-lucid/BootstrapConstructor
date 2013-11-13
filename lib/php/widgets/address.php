@@ -21,7 +21,7 @@ class bsc_widget_address extends bsc_widget
 		$this->option('email','');
 		$this->option('phone_prefix','T: ');
 		$this->option('fax_prefix','F: ');
-		$this->option('email_prefix','<i class="icon-envelope"></i>');
+		$this->option('email_prefix','<i class="'.$__BSC['icons']['class_prefix'].'-envelope"></i>');
 		
 		# this option can be used to add aliases for fields
 		$this->option('fields',array(

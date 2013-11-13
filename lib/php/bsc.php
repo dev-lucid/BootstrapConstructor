@@ -15,6 +15,7 @@ $__bsc= array(
 			return $html.'<script>'.$js.'</script>';
 		}
 	),
+	'icons'=>'class_prefix', # by default, font awesome classes. If you want to use glyphicon, set to: glyphicon glyphicon
 	'initial_js'=>'',
 	'id_positions'=>array(),
 	'autooptions'=>array(
@@ -158,5 +159,6 @@ class bsc
 
 require_once(__DIR__.'/bsc_widget.php');
 require_once(__DIR__.'/bsc_widget_input.php');
+require_once(__DIR__.'/bsc_effects.php');
 
 ?>

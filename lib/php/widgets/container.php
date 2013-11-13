@@ -7,21 +7,17 @@ class bsc_widget_container extends bsc_widget
 {
 	function init()
 	{
+		$this->option_order = array('width');
 		$this->options['tag'] = 'div';
-		$this->option('fluid',true);
+		$this->options['width'] = null;
+		$this->class('container');
 	}
 	
 	function render_start($data=array())
 	{
-		if($this->options['fluid'] == true)
+		if(!is_null($this->options['width']))
 		{
-			unset($this->options['css']['container']);
-			$this->options['css']['container-fluid'] = true;
-		}
-		else
-		{
-			unset($this->options['css']['container-fluid']);
-			$this->options['css']['container'] = true;
+			$this->style('width: '.$this->options['width'].';margin-left: auto;margin-right:auto;');
 		}
 		return parent::render_start($data);
 	}

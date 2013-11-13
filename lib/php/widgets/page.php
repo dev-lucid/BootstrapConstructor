@@ -7,7 +7,7 @@ class bsc_widget_page extends bsc_widget
 {
 	function init()
 	{
-		$this->option_order = array('title','author','title','description','keywords','head_js','foot_js','css','javascript');
+		$this->option_order = array('author','title','description','keywords','head_js','foot_js','css','javascript');
 		$this->options['tag'] = 'body';
 		
 		$this->options['author'] = '';

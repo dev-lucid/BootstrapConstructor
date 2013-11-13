@@ -33,7 +33,7 @@ class bsc_widget_hero_unit extends bsc_widget
 	function render_end($data = array())
 	{			
 		$html = '</p>';	
-		$html .= parent::render_start($data);
+		$html .= parent::render_end($data);
 		return $html;
 	}
 		

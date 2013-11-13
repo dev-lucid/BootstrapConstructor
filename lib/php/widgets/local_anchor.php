@@ -3,25 +3,20 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-class bsc_widget_well extends bsc_widget
+class bsc_widget_local_anchor extends bsc_widget
 {
 	function init()
 	{
-		$this->option_order = array('size');
-		$this->options['tag'] = 'div';
-		$this->class('well');
+		$this->option_order = array('name');
+		$this->options['tag'] = 'a';
 	}
-	
 	
 	function option($name,$value)
 	{
 		switch($name)
 		{
-			case 'size':
-				$this->options['css']['well-'.$value] = true;
-				break;
-			default:
-				parent::option($name,$value);
+			case 'name':
+				$this->attributes['name'] = $value;
 				break;
 		}
 		return $this;
