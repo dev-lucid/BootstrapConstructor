@@ -21,10 +21,10 @@ class bsc_widget_pagination extends bsc_widget
 		
 		$this->options['type'] = 'numbers';
 		
-		$this->options['first'] = '<i class="icon-step-backward">&nbsp;</i>';
-		$this->options['previous'] = '<i class="icon-backward">&nbsp;</i>';
-		$this->options['next'] = '<i class="icon-forward">&nbsp;</i>';
-		$this->options['last'] = '<i class="icon-step-forward">&nbsp;</i>';
+		$this->options['first'] = '<i class="fa fa-step-backward">&nbsp;</i>';
+		$this->options['previous'] = '<i class="fa fa-backward">&nbsp;</i>';
+		$this->options['next'] = '<i class="fa fa-forward">&nbsp;</i>';
+		$this->options['last'] = '<i class="fa fa-step-forward">&nbsp;</i>';
 	}
 	
 	function __pager($dir)
